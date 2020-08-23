@@ -1,0 +1,7 @@
+<select [(ngModel)]="selectedExercise">
+  <option *ngFor="let exerciseName of exerciseNames" [ngValue]="exerciseName">
+    {{exerciseName}}
+  </option>
+</select>
+
+<app-muscle-exercise-chart *ngIf="selectedExercise" [exerciseName]="selectedExercise" [exercisesMap]="workoutData[0].exercises"></app-muscle-exercise-chart>

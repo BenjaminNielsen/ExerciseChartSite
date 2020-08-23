@@ -1,8 +1,8 @@
-import {Exercise} from '../exercise';
+import {Exercise} from '../exercise'
 
 export class MuscleExercise extends Exercise{
-  weight: number;
-  setOrder: number;
-  weightUnit: string;
-  reps: number;
+  weight: number
+  setOrder: number
+  weightUnit: string
+  reps: number
 }

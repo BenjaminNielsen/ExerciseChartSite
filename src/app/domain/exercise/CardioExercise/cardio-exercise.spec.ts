@@ -1,7 +1,7 @@
-import { CardioExercise } from './cardio-exercise';
+import { CardioExercise } from './cardio-exercise'
 
 describe('CardioExercise', () => {
   it('should create an instance', () => {
-    expect(new CardioExercise()).toBeTruthy();
-  });
-});
+    expect(new CardioExercise()).toBeTruthy()
+  })
+})

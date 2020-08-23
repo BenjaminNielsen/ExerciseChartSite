@@ -1,5 +1,5 @@
 export class CardioExercise {
-  distance: number;
-  distanceUnit: string;
-  seconds: number;
+  distance: number
+  distanceUnit: string
+  seconds: number
 }

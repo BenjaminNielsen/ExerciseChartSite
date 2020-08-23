@@ -3,6 +3,7 @@ import { Chart } from 'chart.js'
 import {WorkoutData} from '../../domain/workout/workout-data'
 import {WorkoutService} from '../../services/workout/workout.service'
 
+
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',

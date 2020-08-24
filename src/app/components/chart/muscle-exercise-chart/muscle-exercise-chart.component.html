@@ -1,5 +1,12 @@
-
-{{exerciseName}}
-<div class="chart-container" style="position: relative; width: 40%; height: 40%">
-  <canvas id="canvas{{identifier}}">{{ lineChart }}</canvas>
+<div style="display: flex; margin: auto; width:50%; height:50%">
+  {{exerciseName}}
+  <canvas baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          [plugins]="lineChartPlugins">
+  </canvas>
 </div>

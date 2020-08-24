@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core'
 import {Exercise} from '../../../domain/exercise/exercise'
-import { Chart } from 'chart.js'
+import {ChartDataSets, Chart} from 'chart.js'
 import {MuscleExercise} from '../../../domain/exercise/MuscleExercise/muscle-exercise'
+import {Color, Label} from 'ng2-charts'
 
 @Component({
   selector: 'app-muscle-exercise-chart',
@@ -14,17 +15,21 @@ export class MuscleExerciseChartComponent implements OnInit {
   @Input() exercisesMap: Map<Date, Exercise[]>
   @Input() identifier: string
 
+  public lineChartData: ChartDataSets[]
+  public lineChartLabels: Label[]
+  public lineChartOptions: { responsive: boolean }
+  public lineChartColors: Color[]
+  public lineChartLegend = true
+  public lineChartType: Chart.ChartType = 'line'
+  public lineChartPlugins = []
 
-  public lineChart: Chart
+  // public lineChart: Chart
 
   private weightUnit: string
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.exercisesMap)
-    console.log(this.exercisesMap.values().next())
-
     this.weightUnit = this.exercisesMap.values().next().value.weightUnit
     const chartValues = this.getHighestWeightXYValues(this.exercisesMap)
     this.setupChart(chartValues)
@@ -34,46 +39,21 @@ export class MuscleExerciseChartComponent implements OnInit {
     const map = new Map<string, number>()
     for (const [key, value] of values){
       map.set(key.toLocaleDateString(), Math.max(...(value.map((exercise) => (exercise as MuscleExercise).weight))))
-      console.log('map %o', map)
-
     }
     return map
   }
 
   setupChart(chartVals: Map<string, number>): void {
-    console.log(this.identifier)
-    this.lineChart = new Chart(document.getElementById('canvas'+this.identifier) , {
-      type: 'line',
-      label: 'Highest Weight In a Single Rep',
-      data: {
-          labels: Array.from(chartVals.keys()),
-        datasets: [
-          {
-            data: Array.from(chartVals.values()),
-            borderColor: '#3cb371',
-          }
-        ]
+    this.lineChartData = [ {data: Array.from(chartVals.values()) , label: 'Highest Weight in a Rep'}]
+    this.lineChartLabels = Array.from(chartVals.keys())
+    this.lineChartOptions = {
+      responsive: true,
+    }
+    this.lineChartColors = [
+      {
+        borderColor: '#3cb371',
       },
-      options: {
-        legend: {
-          display: false
-        },
-        scales: {
-          xAxes: [{
-            scaleLabel: {
-              display: true,
-              labelString: 'Time'
-            },
-          }],
-          yAxes: [{
-            scaleLabel: {
-              display: true,
-              labelString: 'Weight (' + this.weightUnit + ')'
-            },
-          }],
-        }
-      }
-    })
+    ]
   }
 
 }

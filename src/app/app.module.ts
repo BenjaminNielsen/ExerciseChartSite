@@ -6,6 +6,7 @@ import { ChartDashboardComponent } from './components/chart/chart-dashboard.comp
 import {HttpClientModule} from '@angular/common/http'
 import { MuscleExerciseChartComponent } from './components/chart/muscle-exercise-chart/muscle-exercise-chart.component'
 import {FormsModule} from '@angular/forms'
+import {ChartsModule} from 'ng2-charts'
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {FormsModule} from '@angular/forms'
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

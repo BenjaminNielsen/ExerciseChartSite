@@ -3,5 +3,27 @@
     {{exerciseName}}
   </option>
 </select>
+<div>
+  <app-muscle-exercise-chart [exerciseName]="'Bench Press (Barbell)'"
+                             [exercisesMap]="workoutService.getDateMappedExerciseSets('Bench Press (Barbell)', workoutData)"
+                             [identifier]="'1'">
 
-<app-muscle-exercise-chart *ngIf="selectedExercise" [exerciseName]="selectedExercise" [exercisesMap]="workoutData[0].exercises"></app-muscle-exercise-chart>
+  </app-muscle-exercise-chart>
+</div>
+<div>
+  <app-muscle-exercise-chart [exerciseName]="'Squat (Barbell)'"
+                             [exercisesMap]="workoutService.getDateMappedExerciseSets('Squat (Barbell)', workoutData)"
+  [identifier]="'2'">
+
+  </app-muscle-exercise-chart>
+</div>
+
+
+
+<!--<div *ngIf="workoutData">-->
+<!--  <app-muscle-exercise-chart  *ngFor="let defaultName of defaultExerciseNames"-->
+<!--                              [exerciseName]="defaultName"-->
+<!--                              [exercisesMap]="workoutService.getDateMappedExerciseSets(defaultName, workoutData)">-->
+<!--  </app-muscle-exercise-chart>-->
+<!--</div>-->
+

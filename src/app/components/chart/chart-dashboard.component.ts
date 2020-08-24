@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import {WorkoutData} from '../../domain/workout/workout-data'
 import {WorkoutService} from '../../services/workout/workout.service'
-
+import {DefaultExercises} from '../../domain/constants/defaultExercises'
+import {Exercise} from '../../domain/exercise/exercise'
 
 @Component({
   selector: 'app-chart',
@@ -10,17 +11,24 @@ import {WorkoutService} from '../../services/workout/workout.service'
 })
 export class ChartDashboardComponent implements OnInit {
 
+  public defaultExerciseNames = DefaultExercises.defaultExerciseNames
   public workoutData: WorkoutData[]
   public selectedExercise: string
 
-  public lineChart = []
-  public dates = []
-  public yAxis = []
   public exerciseNames = []
-  private chosenExercise: string
 
-  constructor(private workoutService: WorkoutService ) { }
+  //Probably useless section
+  public benchData: Map<Date, Exercise[]>
+  public militaryPressData: Map<Date, Exercise[]>
+  public deadliftData: Map<Date, Exercise[]>
+  public squatData: Map<Date, Exercise[]>
+
+
+  constructor( public workoutService: WorkoutService ) { }
+
   ngOnInit(): void {
+
+
     this.workoutService.getJSON().subscribe(workoutGroup => {
       this.workoutData = workoutGroup
 
@@ -30,22 +38,21 @@ export class ChartDashboardComponent implements OnInit {
         ))
       )
 
-
+      console.log('getDateMapped: %o', DefaultExercises.defaultExerciseNames[0])
+      //console.log('getDateMapped Results %o', WorkoutService.getDateMappedExerciseSets(DefaultExercises.defaultExerciseNames[0], workoutGroup))
       console.log(this.exerciseNames)
+      //this.benchData = WorkoutService.getDateMappedExerciseSets()
       workoutGroup.forEach(workout => {
-        console.log(Object.keys(workout.exercises))
-        this.dates.push(new Date(workout.workoutDate).toLocaleDateString())
         // exerciseNamesSet.add(Object.keys(workout.exercises))
-        console.log(this.exerciseNames)
         const totalSets = Object.values(workout.exercises).reduce(( totals: number, currentVal) => totals + currentVal.length, 0)
-
-        this.yAxis.push(totalSets)
-        this.chosenExercise = this.exerciseNames[0]
 
       })
       // this.exerciseNames = Array.from(exerciseNamesSet)
     })
   }
+
+
+
 
 
 

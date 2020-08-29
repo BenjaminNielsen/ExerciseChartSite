@@ -1,8 +1,7 @@
-<div style="display: flex; margin: auto; width:50%; height:50%">
-  {{exerciseName}}
+{{exerciseName}}
+<div style="display: block; margin: auto; width:100%; height:50%">
   <canvas baseChart
           [datasets]="lineChartData"
-          [labels]="lineChartLabels"
           [options]="lineChartOptions"
           [colors]="lineChartColors"
           [legend]="lineChartLegend"

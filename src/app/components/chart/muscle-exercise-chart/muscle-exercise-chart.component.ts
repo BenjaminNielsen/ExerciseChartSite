@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core'
-import {Exercise} from '../../../domain/exercise/exercise'
-import {ChartDataSets, Chart} from 'chart.js'
+import {ChartDataSets, Chart, ChartOptions} from 'chart.js'
 import {MuscleExercise} from '../../../domain/exercise/MuscleExercise/muscle-exercise'
 import {Color, Label} from 'ng2-charts'
+import {MuscleChartPoint} from '../../../domain/chart/MuscleChartPoint'
+import {ExerciseCalculationServiceService} from '../../../services/exercise/exercise-calculation-service.service'
 
 @Component({
   selector: 'app-muscle-exercise-chart',
@@ -12,42 +13,54 @@ import {Color, Label} from 'ng2-charts'
 export class MuscleExerciseChartComponent implements OnInit {
 
   @Input() exerciseName: string
-  @Input() exercisesMap: Map<Date, Exercise[]>
+  @Input() exercisesMap: Map<Date, MuscleExercise[]>
   @Input() identifier: string
 
   public lineChartData: ChartDataSets[]
   public lineChartLabels: Label[]
-  public lineChartOptions: { responsive: boolean }
+  public lineChartOptions: ChartOptions
   public lineChartColors: Color[]
   public lineChartLegend = true
   public lineChartType: Chart.ChartType = 'line'
   public lineChartPlugins = []
 
-  // public lineChart: Chart
-
   private weightUnit: string
 
-  constructor() { }
+  constructor(public calculator: ExerciseCalculationServiceService) { }
 
   ngOnInit(): void {
     this.weightUnit = this.exercisesMap.values().next().value.weightUnit
-    const chartValues = this.getHighestWeightXYValues(this.exercisesMap)
-    this.setupChart(chartValues)
+    const topWeightValues = this.getChartPoints(this.exercisesMap, (e) => Math.max(...(e.map((exercise) => (exercise as MuscleExercise).weight))))
+    const OneRepMaxValues = this.getChartPoints(this.exercisesMap, (e) => this.calculator.getHighest1RM(e))
+    const highestVolumeValues = this.getChartPoints(this.exercisesMap, (e) => e.reduce((prev, curr: MuscleExercise) => curr.weight += prev, 0))
+
+    const dataSets = [{data: topWeightValues, label: 'Highest Weight in a Rep'}, {data: OneRepMaxValues, label: '1RM (Theoretical)'}]
+    this.setupChart(dataSets)
   }
 
-  getHighestWeightXYValues(values: Map<Date, Exercise[]>): Map<string, number>{
-    const map = new Map<string, number>()
+  getChartPoints(values: Map<Date, MuscleExercise[]>, predicate: (exercises: MuscleExercise[]) => number): Chart.ChartPoint[]{
+    const chartPoints: MuscleChartPoint[] = []
     for (const [key, value] of values){
-      map.set(key.toLocaleDateString(), Math.max(...(value.map((exercise) => (exercise as MuscleExercise).weight))))
+      chartPoints.push({t: key, y: predicate(value)})
     }
-    return map
+    console.log(chartPoints)
+    return chartPoints.sort((a, b) => b.t.valueOf() - a.t.valueOf())
   }
 
-  setupChart(chartVals: Map<string, number>): void {
-    this.lineChartData = [ {data: Array.from(chartVals.values()) , label: 'Highest Weight in a Rep'}]
-    this.lineChartLabels = Array.from(chartVals.keys())
+  setupChart(chartVals: any): void {
+    this.lineChartData = chartVals
+  // this.lineChartLabels = chartVals.map(point => point.x)
     this.lineChartOptions = {
       responsive: true,
+      scales: {
+        xAxes: [{
+          type: 'time',
+          time: {
+            unit: 'day'
+          },
+          distribution: 'linear'
+        }]
+      }
     }
     this.lineChartColors = [
       {

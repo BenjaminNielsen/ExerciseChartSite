@@ -12,7 +12,7 @@ import {ChartsModule} from 'ng2-charts'
   declarations: [
     AppComponent,
     ChartDashboardComponent,
-    MuscleExerciseChartComponent
+    MuscleExerciseChartComponent,
   ],
   imports: [
     BrowserModule,

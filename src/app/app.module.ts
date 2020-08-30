@@ -7,6 +7,8 @@ import {HttpClientModule} from '@angular/common/http'
 import { MuscleExerciseChartComponent } from './components/chart/muscle-exercise-chart/muscle-exercise-chart.component'
 import {FormsModule} from '@angular/forms'
 import {ChartsModule} from 'ng2-charts'
+import { ClarityModule } from '@clr/angular'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {ChartsModule} from 'ng2-charts'
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    ClarityModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

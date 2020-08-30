@@ -1,5 +1,21 @@
-{{exerciseName}}
-<div style="display: block; margin: auto; width:100%; height:50%">
+<div>
+  <div>
+    <clr-checkbox-container clrInline (change)="onChange()">
+      <clr-checkbox-wrapper>
+        <input type="checkbox" clrCheckbox name="options"  value="option1" [(ngModel)]="options.topWeight" />
+        <label>Top Weight</label>
+      </clr-checkbox-wrapper>
+      <clr-checkbox-wrapper>
+        <input type="checkbox" clrCheckbox name="options"  value="option2" [(ngModel)]="options.OneRepMax" />
+        <label>One Rep Max</label>
+      </clr-checkbox-wrapper>
+      <clr-checkbox-wrapper>
+        <input type="checkbox" clrCheckbox name="options"  value="option3" [(ngModel)]="options.totalVolume" />
+        <label>Total Volume</label>
+      </clr-checkbox-wrapper>
+    </clr-checkbox-container>
+  </div>
+
   <canvas baseChart
           [datasets]="lineChartData"
           [options]="lineChartOptions"

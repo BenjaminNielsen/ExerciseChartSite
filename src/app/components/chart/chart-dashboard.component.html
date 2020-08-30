@@ -8,9 +8,14 @@
 </label>
 
 <div *ngIf="workoutData">
-  <app-muscle-exercise-chart  *ngFor="let defaultName of defaultExerciseNames"
-                              [exerciseName]="defaultName"
-                              [exercisesMap]="workoutService.getDateMappedExerciseSets(defaultName, workoutData)">
-  </app-muscle-exercise-chart>
+  <div class="clr-col-lg-6 clr-col-sm-12" style="display: inline-block" *ngFor="let defaultName of defaultExerciseNames">
+    <div class="card">
+      <div class="card-header">
+        {{defaultName}}
+      </div>
+      <app-muscle-exercise-chart [exerciseName]="defaultName"
+                                 [exercisesMap]="workoutService.getDateMappedExerciseSets(defaultName, workoutData)">
+      </app-muscle-exercise-chart>
+    </div>
+  </div>
 </div>
-

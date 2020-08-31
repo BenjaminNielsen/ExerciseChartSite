@@ -1,19 +1,19 @@
 <div>
   <div>
-    <clr-checkbox-container clrInline (change)="onChange()">
-      <clr-checkbox-wrapper>
-        <input type="checkbox" clrCheckbox name="options"  value="option1" [(ngModel)]="options.topWeight" />
-        <label>Top Weight</label>
-      </clr-checkbox-wrapper>
-      <clr-checkbox-wrapper>
-        <input type="checkbox" clrCheckbox name="options"  value="option2" [(ngModel)]="options.OneRepMax" />
-        <label>One Rep Max</label>
-      </clr-checkbox-wrapper>
-      <clr-checkbox-wrapper>
-        <input type="checkbox" clrCheckbox name="options"  value="option3" [(ngModel)]="options.totalVolume" />
-        <label>Total Volume</label>
-      </clr-checkbox-wrapper>
-    </clr-checkbox-container>
+    <clr-toggle-container clrInline (change)="onChange()">
+      <clr-toggle-wrapper>
+          <input id="topWeightOption" type="checkbox" clrToggle value="topWeight" [(ngModel)]="options.topWeight"/>
+        <label for="topWeightOption"> Weight</label>
+      </clr-toggle-wrapper>
+      <clr-toggle-wrapper>
+          <input id="OneRepMaxOption" type="checkbox" clrToggle value="OneRepMax" [(ngModel)]="options.OneRepMax"/>
+        <label for="OneRepMaxOption"> 1RM </label>
+      </clr-toggle-wrapper>
+      <clr-toggle-wrapper>
+          <input id="totalVolumeOption" type="checkbox" clrToggle value="totalVolume" [(ngModel)]="options.totalVolume"/>
+        <label for="totalVolumeOption"> Total Volume </label>
+      </clr-toggle-wrapper>
+    </clr-toggle-container>
   </div>
 
   <canvas baseChart

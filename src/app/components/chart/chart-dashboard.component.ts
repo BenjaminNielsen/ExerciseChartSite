@@ -19,17 +19,8 @@ export class ChartDashboardComponent implements OnInit {
   constructor( public workoutService: WorkoutService ) { }
 
   ngOnInit(): void {
-
-    this.workoutService.getJSON().subscribe(workoutGroup => {
-      this.workoutData = workoutGroup
-
-      this.exerciseNames = Array.from( new Set( workoutGroup.map((workout) =>
-        Object.keys(workout.exercises)).reduce((prev, curr) =>
-          prev.concat(curr)
-        ))
-      )
-
-    })
+    this.workoutService.getWorkouts().subscribe((workouts) => this.workoutData = workouts)
+    this.workoutService.getWorkouts().subscribe((workouts) => this.exerciseNames = this.workoutService.getExerciseNames(workouts))
   }
 
 }

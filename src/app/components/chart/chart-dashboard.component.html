@@ -1,11 +1,11 @@
-<label>
-  All Exercises (no current functionality)
-  <select [(ngModel)]="selectedExercise">
-    <option *ngFor="let exerciseName of exerciseNames" [ngValue]="exerciseName">
-      {{exerciseName}}
-    </option>
-  </select>
-</label>
+<!--<label>-->
+<!--  All Exercises (no current functionality)-->
+<!--  <select [(ngModel)]="selectedExercise">-->
+<!--    <option *ngFor="let exerciseName of exerciseNames" [ngValue]="exerciseName">-->
+<!--      {{exerciseName}}-->
+<!--    </option>-->
+<!--  </select>-->
+<!--</label>-->
 
 <div *ngIf="workoutData">
   <div class="clr-col-lg-6 clr-col-sm-12" style="display: inline-block" *ngFor="let defaultName of defaultExerciseNames">

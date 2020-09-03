@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "exercise-chart-site"
+  "defaultProject": "exercise-chart-site",
+  "cli": {
+    "analytics": false
+  }
 }

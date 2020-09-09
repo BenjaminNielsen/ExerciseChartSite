@@ -1,6 +1,6 @@
 {
   "api": {
-    "WorkoutAPI": {
+    "exercisechartsite": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -9,7 +9,7 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 365,
-              "description": "API key for my second attempt getting an api working"
+              "description": "workout api"
             }
           },
           "additionalAuthenticationProviders": []

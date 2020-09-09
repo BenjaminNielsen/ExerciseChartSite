@@ -6,16 +6,20 @@ import API, { graphqlOperation } from "@aws-amplify/api";
 import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import { Observable } from "zen-observable-ts";
 
-export type CreateBlogInput = {
+export type CreateWorkoutInput = {
   id?: string | null;
   name: string;
+  workoutDate: string;
+  workoutNotes?: string | null;
 };
 
-export type ModelBlogConditionInput = {
+export type ModelWorkoutConditionInput = {
   name?: ModelStringInput | null;
-  and?: Array<ModelBlogConditionInput | null> | null;
-  or?: Array<ModelBlogConditionInput | null> | null;
-  not?: ModelBlogConditionInput | null;
+  workoutDate?: ModelStringInput | null;
+  workoutNotes?: ModelStringInput | null;
+  and?: Array<ModelWorkoutConditionInput | null> | null;
+  or?: Array<ModelWorkoutConditionInput | null> | null;
+  not?: ModelWorkoutConditionInput | null;
 };
 
 export type ModelStringInput = {
@@ -57,27 +61,45 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
-export type UpdateBlogInput = {
+export type UpdateWorkoutInput = {
   id: string;
   name?: string | null;
+  workoutDate?: string | null;
+  workoutNotes?: string | null;
 };
 
-export type DeleteBlogInput = {
+export type DeleteWorkoutInput = {
   id?: string | null;
 };
 
-export type CreatePostInput = {
+export type CreateExerciseInput = {
   id?: string | null;
-  title: string;
-  blogID: string;
+  workoutID: string;
+  name: string;
+  notes?: string | null;
+  distance?: number | null;
+  distanceUnit?: string | null;
+  seconds?: number | null;
+  weight?: number | null;
+  setOrder?: number | null;
+  weightUnit?: string | null;
+  reps?: number | null;
 };
 
-export type ModelPostConditionInput = {
-  title?: ModelStringInput | null;
-  blogID?: ModelIDInput | null;
-  and?: Array<ModelPostConditionInput | null> | null;
-  or?: Array<ModelPostConditionInput | null> | null;
-  not?: ModelPostConditionInput | null;
+export type ModelExerciseConditionInput = {
+  workoutID?: ModelIDInput | null;
+  name?: ModelStringInput | null;
+  notes?: ModelStringInput | null;
+  distance?: ModelFloatInput | null;
+  distanceUnit?: ModelStringInput | null;
+  seconds?: ModelIntInput | null;
+  weight?: ModelFloatInput | null;
+  setOrder?: ModelIntInput | null;
+  weightUnit?: ModelStringInput | null;
+  reps?: ModelIntInput | null;
+  and?: Array<ModelExerciseConditionInput | null> | null;
+  or?: Array<ModelExerciseConditionInput | null> | null;
+  not?: ModelExerciseConditionInput | null;
 };
 
 export type ModelIDInput = {
@@ -96,114 +118,96 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
-export type UpdatePostInput = {
+export type ModelFloatInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  between?: Array<number | null> | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
+export type ModelIntInput = {
+  ne?: number | null;
+  eq?: number | null;
+  le?: number | null;
+  lt?: number | null;
+  ge?: number | null;
+  gt?: number | null;
+  between?: Array<number | null> | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
+export type UpdateExerciseInput = {
   id: string;
-  title?: string | null;
-  blogID?: string | null;
-};
-
-export type DeletePostInput = {
-  id?: string | null;
-};
-
-export type CreateCommentInput = {
-  id?: string | null;
-  postID: string;
-  content: string;
-};
-
-export type ModelCommentConditionInput = {
-  postID?: ModelIDInput | null;
-  content?: ModelStringInput | null;
-  and?: Array<ModelCommentConditionInput | null> | null;
-  or?: Array<ModelCommentConditionInput | null> | null;
-  not?: ModelCommentConditionInput | null;
-};
-
-export type UpdateCommentInput = {
-  id: string;
-  postID?: string | null;
-  content?: string | null;
-};
-
-export type DeleteCommentInput = {
-  id?: string | null;
-};
-
-export type CreateRestaurantInput = {
-  id?: string | null;
-  name: string;
-  description: string;
-  city: string;
-};
-
-export type ModelRestaurantConditionInput = {
-  name?: ModelStringInput | null;
-  description?: ModelStringInput | null;
-  city?: ModelStringInput | null;
-  and?: Array<ModelRestaurantConditionInput | null> | null;
-  or?: Array<ModelRestaurantConditionInput | null> | null;
-  not?: ModelRestaurantConditionInput | null;
-};
-
-export type UpdateRestaurantInput = {
-  id: string;
+  workoutID?: string | null;
   name?: string | null;
-  description?: string | null;
-  city?: string | null;
+  notes?: string | null;
+  distance?: number | null;
+  distanceUnit?: string | null;
+  seconds?: number | null;
+  weight?: number | null;
+  setOrder?: number | null;
+  weightUnit?: string | null;
+  reps?: number | null;
 };
 
-export type DeleteRestaurantInput = {
+export type DeleteExerciseInput = {
   id?: string | null;
 };
 
-export type ModelBlogFilterInput = {
+export type ModelWorkoutFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
-  and?: Array<ModelBlogFilterInput | null> | null;
-  or?: Array<ModelBlogFilterInput | null> | null;
-  not?: ModelBlogFilterInput | null;
+  workoutDate?: ModelStringInput | null;
+  workoutNotes?: ModelStringInput | null;
+  and?: Array<ModelWorkoutFilterInput | null> | null;
+  or?: Array<ModelWorkoutFilterInput | null> | null;
+  not?: ModelWorkoutFilterInput | null;
 };
 
-export type ModelPostFilterInput = {
+export type ModelExerciseFilterInput = {
   id?: ModelIDInput | null;
-  title?: ModelStringInput | null;
-  blogID?: ModelIDInput | null;
-  and?: Array<ModelPostFilterInput | null> | null;
-  or?: Array<ModelPostFilterInput | null> | null;
-  not?: ModelPostFilterInput | null;
-};
-
-export type ModelCommentFilterInput = {
-  id?: ModelIDInput | null;
-  postID?: ModelIDInput | null;
-  content?: ModelStringInput | null;
-  and?: Array<ModelCommentFilterInput | null> | null;
-  or?: Array<ModelCommentFilterInput | null> | null;
-  not?: ModelCommentFilterInput | null;
-};
-
-export type ModelRestaurantFilterInput = {
-  id?: ModelIDInput | null;
+  workoutID?: ModelIDInput | null;
   name?: ModelStringInput | null;
-  description?: ModelStringInput | null;
-  city?: ModelStringInput | null;
-  and?: Array<ModelRestaurantFilterInput | null> | null;
-  or?: Array<ModelRestaurantFilterInput | null> | null;
-  not?: ModelRestaurantFilterInput | null;
+  notes?: ModelStringInput | null;
+  distance?: ModelFloatInput | null;
+  distanceUnit?: ModelStringInput | null;
+  seconds?: ModelIntInput | null;
+  weight?: ModelFloatInput | null;
+  setOrder?: ModelIntInput | null;
+  weightUnit?: ModelStringInput | null;
+  reps?: ModelIntInput | null;
+  and?: Array<ModelExerciseFilterInput | null> | null;
+  or?: Array<ModelExerciseFilterInput | null> | null;
+  not?: ModelExerciseFilterInput | null;
 };
 
-export type CreateBlogMutation = {
-  __typename: "Blog";
+export type CreateWorkoutMutation = {
+  __typename: "Workout";
   id: string;
   name: string;
-  posts: {
-    __typename: "ModelPostConnection";
+  workoutDate: string;
+  workoutNotes: string | null;
+  exercises: {
+    __typename: "ModelExerciseConnection";
     items: Array<{
-      __typename: "Post";
+      __typename: "Exercise";
       id: string;
-      title: string;
-      blogID: string;
+      workoutID: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -213,17 +217,27 @@ export type CreateBlogMutation = {
   updatedAt: string;
 };
 
-export type UpdateBlogMutation = {
-  __typename: "Blog";
+export type UpdateWorkoutMutation = {
+  __typename: "Workout";
   id: string;
   name: string;
-  posts: {
-    __typename: "ModelPostConnection";
+  workoutDate: string;
+  workoutNotes: string | null;
+  exercises: {
+    __typename: "ModelExerciseConnection";
     items: Array<{
-      __typename: "Post";
+      __typename: "Exercise";
       id: string;
-      title: string;
-      blogID: string;
+      workoutID: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -233,17 +247,27 @@ export type UpdateBlogMutation = {
   updatedAt: string;
 };
 
-export type DeleteBlogMutation = {
-  __typename: "Blog";
+export type DeleteWorkoutMutation = {
+  __typename: "Workout";
   id: string;
   name: string;
-  posts: {
-    __typename: "ModelPostConnection";
+  workoutDate: string;
+  workoutNotes: string | null;
+  exercises: {
+    __typename: "ModelExerciseConnection";
     items: Array<{
-      __typename: "Post";
+      __typename: "Exercise";
       id: string;
-      title: string;
-      blogID: string;
+      workoutID: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -253,93 +277,117 @@ export type DeleteBlogMutation = {
   updatedAt: string;
 };
 
-export type CreatePostMutation = {
-  __typename: "Post";
+export type CreateExerciseMutation = {
+  __typename: "Exercise";
   id: string;
-  title: string;
-  blogID: string;
-  blog: {
-    __typename: "Blog";
+  workoutID: string;
+  workout: {
+    __typename: "Workout";
     id: string;
     name: string;
-    posts: {
-      __typename: "ModelPostConnection";
+    workoutDate: string;
+    workoutNotes: string | null;
+    exercises: {
+      __typename: "ModelExerciseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
-  comments: {
-    __typename: "ModelCommentConnection";
-    items: Array<{
-      __typename: "Comment";
-      id: string;
-      postID: string;
-      content: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
   createdAt: string;
   updatedAt: string;
 };
 
-export type UpdatePostMutation = {
-  __typename: "Post";
+export type UpdateExerciseMutation = {
+  __typename: "Exercise";
   id: string;
-  title: string;
-  blogID: string;
-  blog: {
-    __typename: "Blog";
+  workoutID: string;
+  workout: {
+    __typename: "Workout";
     id: string;
     name: string;
-    posts: {
-      __typename: "ModelPostConnection";
+    workoutDate: string;
+    workoutNotes: string | null;
+    exercises: {
+      __typename: "ModelExerciseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
-  comments: {
-    __typename: "ModelCommentConnection";
-    items: Array<{
-      __typename: "Comment";
-      id: string;
-      postID: string;
-      content: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
   createdAt: string;
   updatedAt: string;
 };
 
-export type DeletePostMutation = {
-  __typename: "Post";
+export type DeleteExerciseMutation = {
+  __typename: "Exercise";
   id: string;
-  title: string;
-  blogID: string;
-  blog: {
-    __typename: "Blog";
+  workoutID: string;
+  workout: {
+    __typename: "Workout";
     id: string;
     name: string;
-    posts: {
-      __typename: "ModelPostConnection";
+    workoutDate: string;
+    workoutNotes: string | null;
+    exercises: {
+      __typename: "ModelExerciseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
-  comments: {
-    __typename: "ModelCommentConnection";
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type GetWorkoutQuery = {
+  __typename: "Workout";
+  id: string;
+  name: string;
+  workoutDate: string;
+  workoutNotes: string | null;
+  exercises: {
+    __typename: "ModelExerciseConnection";
     items: Array<{
-      __typename: "Comment";
+      __typename: "Exercise";
       id: string;
-      postID: string;
-      content: string;
+      workoutID: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -349,148 +397,16 @@ export type DeletePostMutation = {
   updatedAt: string;
 };
 
-export type CreateCommentMutation = {
-  __typename: "Comment";
-  id: string;
-  postID: string;
-  post: {
-    __typename: "Post";
-    id: string;
-    title: string;
-    blogID: string;
-    blog: {
-      __typename: "Blog";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    comments: {
-      __typename: "ModelCommentConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type UpdateCommentMutation = {
-  __typename: "Comment";
-  id: string;
-  postID: string;
-  post: {
-    __typename: "Post";
-    id: string;
-    title: string;
-    blogID: string;
-    blog: {
-      __typename: "Blog";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    comments: {
-      __typename: "ModelCommentConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type DeleteCommentMutation = {
-  __typename: "Comment";
-  id: string;
-  postID: string;
-  post: {
-    __typename: "Post";
-    id: string;
-    title: string;
-    blogID: string;
-    blog: {
-      __typename: "Blog";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    comments: {
-      __typename: "ModelCommentConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type CreateRestaurantMutation = {
-  __typename: "Restaurant";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type UpdateRestaurantMutation = {
-  __typename: "Restaurant";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type DeleteRestaurantMutation = {
-  __typename: "Restaurant";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type GetBlogQuery = {
-  __typename: "Blog";
-  id: string;
-  name: string;
-  posts: {
-    __typename: "ModelPostConnection";
-    items: Array<{
-      __typename: "Post";
-      id: string;
-      title: string;
-      blogID: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type ListBlogsQuery = {
-  __typename: "ModelBlogConnection";
+export type ListWorkoutsQuery = {
+  __typename: "ModelWorkoutConnection";
   items: Array<{
-    __typename: "Blog";
+    __typename: "Workout";
     id: string;
     name: string;
-    posts: {
-      __typename: "ModelPostConnection";
+    workoutDate: string;
+    workoutNotes: string | null;
+    exercises: {
+      __typename: "ModelExerciseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
@@ -499,401 +415,242 @@ export type ListBlogsQuery = {
   nextToken: string | null;
 };
 
-export type GetPostQuery = {
-  __typename: "Post";
+export type GetExerciseQuery = {
+  __typename: "Exercise";
   id: string;
-  title: string;
-  blogID: string;
-  blog: {
-    __typename: "Blog";
+  workoutID: string;
+  workout: {
+    __typename: "Workout";
     id: string;
     name: string;
-    posts: {
-      __typename: "ModelPostConnection";
+    workoutDate: string;
+    workoutNotes: string | null;
+    exercises: {
+      __typename: "ModelExerciseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
-  comments: {
-    __typename: "ModelCommentConnection";
-    items: Array<{
-      __typename: "Comment";
-      id: string;
-      postID: string;
-      content: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
   createdAt: string;
   updatedAt: string;
 };
 
-export type ListPostsQuery = {
-  __typename: "ModelPostConnection";
+export type ListExercisesQuery = {
+  __typename: "ModelExerciseConnection";
   items: Array<{
-    __typename: "Post";
+    __typename: "Exercise";
     id: string;
-    title: string;
-    blogID: string;
-    blog: {
-      __typename: "Blog";
+    workoutID: string;
+    workout: {
+      __typename: "Workout";
       id: string;
       name: string;
+      workoutDate: string;
+      workoutNotes: string | null;
       createdAt: string;
       updatedAt: string;
     } | null;
-    comments: {
-      __typename: "ModelCommentConnection";
-      nextToken: string | null;
-    } | null;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
 };
 
-export type GetCommentQuery = {
-  __typename: "Comment";
-  id: string;
-  postID: string;
-  post: {
-    __typename: "Post";
-    id: string;
-    title: string;
-    blogID: string;
-    blog: {
-      __typename: "Blog";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    comments: {
-      __typename: "ModelCommentConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type ListCommentsQuery = {
-  __typename: "ModelCommentConnection";
-  items: Array<{
-    __typename: "Comment";
-    id: string;
-    postID: string;
-    post: {
-      __typename: "Post";
-      id: string;
-      title: string;
-      blogID: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    content: string;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
-};
-
-export type GetRestaurantQuery = {
-  __typename: "Restaurant";
+export type OnCreateWorkoutSubscription = {
+  __typename: "Workout";
   id: string;
   name: string;
-  description: string;
-  city: string;
+  workoutDate: string;
+  workoutNotes: string | null;
+  exercises: {
+    __typename: "ModelExerciseConnection";
+    items: Array<{
+      __typename: "Exercise";
+      id: string;
+      workoutID: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
 
-export type ListRestaurantsQuery = {
-  __typename: "ModelRestaurantConnection";
-  items: Array<{
-    __typename: "Restaurant";
+export type OnUpdateWorkoutSubscription = {
+  __typename: "Workout";
+  id: string;
+  name: string;
+  workoutDate: string;
+  workoutNotes: string | null;
+  exercises: {
+    __typename: "ModelExerciseConnection";
+    items: Array<{
+      __typename: "Exercise";
+      id: string;
+      workoutID: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteWorkoutSubscription = {
+  __typename: "Workout";
+  id: string;
+  name: string;
+  workoutDate: string;
+  workoutNotes: string | null;
+  exercises: {
+    __typename: "ModelExerciseConnection";
+    items: Array<{
+      __typename: "Exercise";
+      id: string;
+      workoutID: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateExerciseSubscription = {
+  __typename: "Exercise";
+  id: string;
+  workoutID: string;
+  workout: {
+    __typename: "Workout";
     id: string;
     name: string;
-    description: string;
-    city: string;
+    workoutDate: string;
+    workoutNotes: string | null;
+    exercises: {
+      __typename: "ModelExerciseConnection";
+      nextToken: string | null;
+    } | null;
     createdAt: string;
     updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
-};
-
-export type OnCreateBlogSubscription = {
-  __typename: "Blog";
-  id: string;
-  name: string;
-  posts: {
-    __typename: "ModelPostConnection";
-    items: Array<{
-      __typename: "Post";
-      id: string;
-      title: string;
-      blogID: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
   } | null;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
   createdAt: string;
   updatedAt: string;
 };
 
-export type OnUpdateBlogSubscription = {
-  __typename: "Blog";
+export type OnUpdateExerciseSubscription = {
+  __typename: "Exercise";
   id: string;
-  name: string;
-  posts: {
-    __typename: "ModelPostConnection";
-    items: Array<{
-      __typename: "Post";
-      id: string;
-      title: string;
-      blogID: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnDeleteBlogSubscription = {
-  __typename: "Blog";
-  id: string;
-  name: string;
-  posts: {
-    __typename: "ModelPostConnection";
-    items: Array<{
-      __typename: "Post";
-      id: string;
-      title: string;
-      blogID: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnCreatePostSubscription = {
-  __typename: "Post";
-  id: string;
-  title: string;
-  blogID: string;
-  blog: {
-    __typename: "Blog";
+  workoutID: string;
+  workout: {
+    __typename: "Workout";
     id: string;
     name: string;
-    posts: {
-      __typename: "ModelPostConnection";
+    workoutDate: string;
+    workoutNotes: string | null;
+    exercises: {
+      __typename: "ModelExerciseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
-  comments: {
-    __typename: "ModelCommentConnection";
-    items: Array<{
-      __typename: "Comment";
-      id: string;
-      postID: string;
-      content: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
   createdAt: string;
   updatedAt: string;
 };
 
-export type OnUpdatePostSubscription = {
-  __typename: "Post";
+export type OnDeleteExerciseSubscription = {
+  __typename: "Exercise";
   id: string;
-  title: string;
-  blogID: string;
-  blog: {
-    __typename: "Blog";
+  workoutID: string;
+  workout: {
+    __typename: "Workout";
     id: string;
     name: string;
-    posts: {
-      __typename: "ModelPostConnection";
+    workoutDate: string;
+    workoutNotes: string | null;
+    exercises: {
+      __typename: "ModelExerciseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
   } | null;
-  comments: {
-    __typename: "ModelCommentConnection";
-    items: Array<{
-      __typename: "Comment";
-      id: string;
-      postID: string;
-      content: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnDeletePostSubscription = {
-  __typename: "Post";
-  id: string;
-  title: string;
-  blogID: string;
-  blog: {
-    __typename: "Blog";
-    id: string;
-    name: string;
-    posts: {
-      __typename: "ModelPostConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  comments: {
-    __typename: "ModelCommentConnection";
-    items: Array<{
-      __typename: "Comment";
-      id: string;
-      postID: string;
-      content: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnCreateCommentSubscription = {
-  __typename: "Comment";
-  id: string;
-  postID: string;
-  post: {
-    __typename: "Post";
-    id: string;
-    title: string;
-    blogID: string;
-    blog: {
-      __typename: "Blog";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    comments: {
-      __typename: "ModelCommentConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnUpdateCommentSubscription = {
-  __typename: "Comment";
-  id: string;
-  postID: string;
-  post: {
-    __typename: "Post";
-    id: string;
-    title: string;
-    blogID: string;
-    blog: {
-      __typename: "Blog";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    comments: {
-      __typename: "ModelCommentConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnDeleteCommentSubscription = {
-  __typename: "Comment";
-  id: string;
-  postID: string;
-  post: {
-    __typename: "Post";
-    id: string;
-    title: string;
-    blogID: string;
-    blog: {
-      __typename: "Blog";
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-    } | null;
-    comments: {
-      __typename: "ModelCommentConnection";
-      nextToken: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null;
-  content: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnCreateRestaurantSubscription = {
-  __typename: "Restaurant";
-  id: string;
   name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnUpdateRestaurantSubscription = {
-  __typename: "Restaurant";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type OnDeleteRestaurantSubscription = {
-  __typename: "Restaurant";
-  id: string;
-  name: string;
-  description: string;
-  city: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -902,22 +659,32 @@ export type OnDeleteRestaurantSubscription = {
   providedIn: "root"
 })
 export class APIService {
-  async CreateBlog(
-    input: CreateBlogInput,
-    condition?: ModelBlogConditionInput
-  ): Promise<CreateBlogMutation> {
-    const statement = `mutation CreateBlog($input: CreateBlogInput!, $condition: ModelBlogConditionInput) {
-        createBlog(input: $input, condition: $condition) {
+  async CreateWorkout(
+    input: CreateWorkoutInput,
+    condition?: ModelWorkoutConditionInput
+  ): Promise<CreateWorkoutMutation> {
+    const statement = `mutation CreateWorkout($input: CreateWorkoutInput!, $condition: ModelWorkoutConditionInput) {
+        createWorkout(input: $input, condition: $condition) {
           __typename
           id
           name
-          posts {
+          workoutDate
+          workoutNotes
+          exercises {
             __typename
             items {
               __typename
               id
-              title
-              blogID
+              workoutID
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
               createdAt
               updatedAt
             }
@@ -936,24 +703,34 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <CreateBlogMutation>response.data.createBlog;
+    return <CreateWorkoutMutation>response.data.createWorkout;
   }
-  async UpdateBlog(
-    input: UpdateBlogInput,
-    condition?: ModelBlogConditionInput
-  ): Promise<UpdateBlogMutation> {
-    const statement = `mutation UpdateBlog($input: UpdateBlogInput!, $condition: ModelBlogConditionInput) {
-        updateBlog(input: $input, condition: $condition) {
+  async UpdateWorkout(
+    input: UpdateWorkoutInput,
+    condition?: ModelWorkoutConditionInput
+  ): Promise<UpdateWorkoutMutation> {
+    const statement = `mutation UpdateWorkout($input: UpdateWorkoutInput!, $condition: ModelWorkoutConditionInput) {
+        updateWorkout(input: $input, condition: $condition) {
           __typename
           id
           name
-          posts {
+          workoutDate
+          workoutNotes
+          exercises {
             __typename
             items {
               __typename
               id
-              title
-              blogID
+              workoutID
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
               createdAt
               updatedAt
             }
@@ -972,24 +749,34 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <UpdateBlogMutation>response.data.updateBlog;
+    return <UpdateWorkoutMutation>response.data.updateWorkout;
   }
-  async DeleteBlog(
-    input: DeleteBlogInput,
-    condition?: ModelBlogConditionInput
-  ): Promise<DeleteBlogMutation> {
-    const statement = `mutation DeleteBlog($input: DeleteBlogInput!, $condition: ModelBlogConditionInput) {
-        deleteBlog(input: $input, condition: $condition) {
+  async DeleteWorkout(
+    input: DeleteWorkoutInput,
+    condition?: ModelWorkoutConditionInput
+  ): Promise<DeleteWorkoutMutation> {
+    const statement = `mutation DeleteWorkout($input: DeleteWorkoutInput!, $condition: ModelWorkoutConditionInput) {
+        deleteWorkout(input: $input, condition: $condition) {
           __typename
           id
           name
-          posts {
+          workoutDate
+          workoutNotes
+          exercises {
             __typename
             items {
               __typename
               id
-              title
-              blogID
+              workoutID
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
               createdAt
               updatedAt
             }
@@ -1008,41 +795,39 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteBlogMutation>response.data.deleteBlog;
+    return <DeleteWorkoutMutation>response.data.deleteWorkout;
   }
-  async CreatePost(
-    input: CreatePostInput,
-    condition?: ModelPostConditionInput
-  ): Promise<CreatePostMutation> {
-    const statement = `mutation CreatePost($input: CreatePostInput!, $condition: ModelPostConditionInput) {
-        createPost(input: $input, condition: $condition) {
+  async CreateExercise(
+    input: CreateExerciseInput,
+    condition?: ModelExerciseConditionInput
+  ): Promise<CreateExerciseMutation> {
+    const statement = `mutation CreateExercise($input: CreateExerciseInput!, $condition: ModelExerciseConditionInput) {
+        createExercise(input: $input, condition: $condition) {
           __typename
           id
-          title
-          blogID
-          blog {
+          workoutID
+          workout {
             __typename
             id
             name
-            posts {
+            workoutDate
+            workoutNotes
+            exercises {
               __typename
               nextToken
             }
             createdAt
             updatedAt
           }
-          comments {
-            __typename
-            items {
-              __typename
-              id
-              postID
-              content
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          weight
+          setOrder
+          weightUnit
+          reps
           createdAt
           updatedAt
         }
@@ -1056,41 +841,39 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <CreatePostMutation>response.data.createPost;
+    return <CreateExerciseMutation>response.data.createExercise;
   }
-  async UpdatePost(
-    input: UpdatePostInput,
-    condition?: ModelPostConditionInput
-  ): Promise<UpdatePostMutation> {
-    const statement = `mutation UpdatePost($input: UpdatePostInput!, $condition: ModelPostConditionInput) {
-        updatePost(input: $input, condition: $condition) {
+  async UpdateExercise(
+    input: UpdateExerciseInput,
+    condition?: ModelExerciseConditionInput
+  ): Promise<UpdateExerciseMutation> {
+    const statement = `mutation UpdateExercise($input: UpdateExerciseInput!, $condition: ModelExerciseConditionInput) {
+        updateExercise(input: $input, condition: $condition) {
           __typename
           id
-          title
-          blogID
-          blog {
+          workoutID
+          workout {
             __typename
             id
             name
-            posts {
+            workoutDate
+            workoutNotes
+            exercises {
               __typename
               nextToken
             }
             createdAt
             updatedAt
           }
-          comments {
-            __typename
-            items {
-              __typename
-              id
-              postID
-              content
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          weight
+          setOrder
+          weightUnit
+          reps
           createdAt
           updatedAt
         }
@@ -1104,279 +887,77 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <UpdatePostMutation>response.data.updatePost;
+    return <UpdateExerciseMutation>response.data.updateExercise;
   }
-  async DeletePost(
-    input: DeletePostInput,
-    condition?: ModelPostConditionInput
-  ): Promise<DeletePostMutation> {
-    const statement = `mutation DeletePost($input: DeletePostInput!, $condition: ModelPostConditionInput) {
-        deletePost(input: $input, condition: $condition) {
+  async DeleteExercise(
+    input: DeleteExerciseInput,
+    condition?: ModelExerciseConditionInput
+  ): Promise<DeleteExerciseMutation> {
+    const statement = `mutation DeleteExercise($input: DeleteExerciseInput!, $condition: ModelExerciseConditionInput) {
+        deleteExercise(input: $input, condition: $condition) {
           __typename
           id
-          title
-          blogID
-          blog {
+          workoutID
+          workout {
             __typename
             id
             name
-            posts {
+            workoutDate
+            workoutNotes
+            exercises {
               __typename
               nextToken
             }
             createdAt
             updatedAt
           }
-          comments {
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          weight
+          setOrder
+          weightUnit
+          reps
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteExerciseMutation>response.data.deleteExercise;
+  }
+  async GetWorkout(id: string): Promise<GetWorkoutQuery> {
+    const statement = `query GetWorkout($id: ID!) {
+        getWorkout(id: $id) {
+          __typename
+          id
+          name
+          workoutDate
+          workoutNotes
+          exercises {
             __typename
             items {
               __typename
               id
-              postID
-              content
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeletePostMutation>response.data.deletePost;
-  }
-  async CreateComment(
-    input: CreateCommentInput,
-    condition?: ModelCommentConditionInput
-  ): Promise<CreateCommentMutation> {
-    const statement = `mutation CreateComment($input: CreateCommentInput!, $condition: ModelCommentConditionInput) {
-        createComment(input: $input, condition: $condition) {
-          __typename
-          id
-          postID
-          post {
-            __typename
-            id
-            title
-            blogID
-            blog {
-              __typename
-              id
+              workoutID
               name
-              createdAt
-              updatedAt
-            }
-            comments {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          content
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateCommentMutation>response.data.createComment;
-  }
-  async UpdateComment(
-    input: UpdateCommentInput,
-    condition?: ModelCommentConditionInput
-  ): Promise<UpdateCommentMutation> {
-    const statement = `mutation UpdateComment($input: UpdateCommentInput!, $condition: ModelCommentConditionInput) {
-        updateComment(input: $input, condition: $condition) {
-          __typename
-          id
-          postID
-          post {
-            __typename
-            id
-            title
-            blogID
-            blog {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            comments {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          content
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <UpdateCommentMutation>response.data.updateComment;
-  }
-  async DeleteComment(
-    input: DeleteCommentInput,
-    condition?: ModelCommentConditionInput
-  ): Promise<DeleteCommentMutation> {
-    const statement = `mutation DeleteComment($input: DeleteCommentInput!, $condition: ModelCommentConditionInput) {
-        deleteComment(input: $input, condition: $condition) {
-          __typename
-          id
-          postID
-          post {
-            __typename
-            id
-            title
-            blogID
-            blog {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            comments {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          content
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteCommentMutation>response.data.deleteComment;
-  }
-  async CreateRestaurant(
-    input: CreateRestaurantInput,
-    condition?: ModelRestaurantConditionInput
-  ): Promise<CreateRestaurantMutation> {
-    const statement = `mutation CreateRestaurant($input: CreateRestaurantInput!, $condition: ModelRestaurantConditionInput) {
-        createRestaurant(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <CreateRestaurantMutation>response.data.createRestaurant;
-  }
-  async UpdateRestaurant(
-    input: UpdateRestaurantInput,
-    condition?: ModelRestaurantConditionInput
-  ): Promise<UpdateRestaurantMutation> {
-    const statement = `mutation UpdateRestaurant($input: UpdateRestaurantInput!, $condition: ModelRestaurantConditionInput) {
-        updateRestaurant(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <UpdateRestaurantMutation>response.data.updateRestaurant;
-  }
-  async DeleteRestaurant(
-    input: DeleteRestaurantInput,
-    condition?: ModelRestaurantConditionInput
-  ): Promise<DeleteRestaurantMutation> {
-    const statement = `mutation DeleteRestaurant($input: DeleteRestaurantInput!, $condition: ModelRestaurantConditionInput) {
-        deleteRestaurant(input: $input, condition: $condition) {
-          __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      input
-    };
-    if (condition) {
-      gqlAPIServiceArguments.condition = condition;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <DeleteRestaurantMutation>response.data.deleteRestaurant;
-  }
-  async GetBlog(id: string): Promise<GetBlogQuery> {
-    const statement = `query GetBlog($id: ID!) {
-        getBlog(id: $id) {
-          __typename
-          id
-          name
-          posts {
-            __typename
-            items {
-              __typename
-              id
-              title
-              blogID
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
               createdAt
               updatedAt
             }
@@ -1392,21 +973,23 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetBlogQuery>response.data.getBlog;
+    return <GetWorkoutQuery>response.data.getWorkout;
   }
-  async ListBlogs(
-    filter?: ModelBlogFilterInput,
+  async ListWorkouts(
+    filter?: ModelWorkoutFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListBlogsQuery> {
-    const statement = `query ListBlogs($filter: ModelBlogFilterInput, $limit: Int, $nextToken: String) {
-        listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListWorkoutsQuery> {
+    const statement = `query ListWorkouts($filter: ModelWorkoutFilterInput, $limit: Int, $nextToken: String) {
+        listWorkouts(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
             id
             name
-            posts {
+            workoutDate
+            workoutNotes
+            exercises {
               __typename
               nextToken
             }
@@ -1429,38 +1012,36 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListBlogsQuery>response.data.listBlogs;
+    return <ListWorkoutsQuery>response.data.listWorkouts;
   }
-  async GetPost(id: string): Promise<GetPostQuery> {
-    const statement = `query GetPost($id: ID!) {
-        getPost(id: $id) {
+  async GetExercise(id: string): Promise<GetExerciseQuery> {
+    const statement = `query GetExercise($id: ID!) {
+        getExercise(id: $id) {
           __typename
           id
-          title
-          blogID
-          blog {
+          workoutID
+          workout {
             __typename
             id
             name
-            posts {
+            workoutDate
+            workoutNotes
+            exercises {
               __typename
               nextToken
             }
             createdAt
             updatedAt
           }
-          comments {
-            __typename
-            items {
-              __typename
-              id
-              postID
-              content
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          weight
+          setOrder
+          weightUnit
+          reps
           createdAt
           updatedAt
         }
@@ -1471,32 +1052,38 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetPostQuery>response.data.getPost;
+    return <GetExerciseQuery>response.data.getExercise;
   }
-  async ListPosts(
-    filter?: ModelPostFilterInput,
+  async ListExercises(
+    filter?: ModelExerciseFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListPostsQuery> {
-    const statement = `query ListPosts($filter: ModelPostFilterInput, $limit: Int, $nextToken: String) {
-        listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListExercisesQuery> {
+    const statement = `query ListExercises($filter: ModelExerciseFilterInput, $limit: Int, $nextToken: String) {
+        listExercises(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
             id
-            title
-            blogID
-            blog {
+            workoutID
+            workout {
               __typename
               id
               name
+              workoutDate
+              workoutNotes
               createdAt
               updatedAt
             }
-            comments {
-              __typename
-              nextToken
-            }
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            weight
+            setOrder
+            weightUnit
+            reps
             createdAt
             updatedAt
           }
@@ -1516,494 +1103,233 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListPostsQuery>response.data.listPosts;
+    return <ListExercisesQuery>response.data.listExercises;
   }
-  async GetComment(id: string): Promise<GetCommentQuery> {
-    const statement = `query GetComment($id: ID!) {
-        getComment(id: $id) {
-          __typename
-          id
-          postID
-          post {
-            __typename
-            id
-            title
-            blogID
-            blog {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            comments {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          content
-          createdAt
-          updatedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      id
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <GetCommentQuery>response.data.getComment;
-  }
-  async ListComments(
-    filter?: ModelCommentFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<ListCommentsQuery> {
-    const statement = `query ListComments($filter: ModelCommentFilterInput, $limit: Int, $nextToken: String) {
-        listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
-          __typename
-          items {
-            __typename
-            id
-            postID
-            post {
-              __typename
-              id
-              title
-              blogID
-              createdAt
-              updatedAt
-            }
-            content
-            createdAt
-            updatedAt
-          }
-          nextToken
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <ListCommentsQuery>response.data.listComments;
-  }
-  async GetRestaurant(id: string): Promise<GetRestaurantQuery> {
-    const statement = `query GetRestaurant($id: ID!) {
-        getRestaurant(id: $id) {
+  OnCreateWorkoutListener: Observable<
+    OnCreateWorkoutSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateWorkout {
+        onCreateWorkout {
           __typename
           id
           name
-          description
-          city
+          workoutDate
+          workoutNotes
+          exercises {
+            __typename
+            items {
+              __typename
+              id
+              workoutID
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           createdAt
           updatedAt
         }
-      }`;
-    const gqlAPIServiceArguments: any = {
-      id
-    };
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <GetRestaurantQuery>response.data.getRestaurant;
-  }
-  async ListRestaurants(
-    filter?: ModelRestaurantFilterInput,
-    limit?: number,
-    nextToken?: string
-  ): Promise<ListRestaurantsQuery> {
-    const statement = `query ListRestaurants($filter: ModelRestaurantFilterInput, $limit: Int, $nextToken: String) {
-        listRestaurants(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      }`
+    )
+  ) as Observable<OnCreateWorkoutSubscription>;
+
+  OnUpdateWorkoutListener: Observable<
+    OnUpdateWorkoutSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateWorkout {
+        onUpdateWorkout {
           __typename
-          items {
+          id
+          name
+          workoutDate
+          workoutNotes
+          exercises {
+            __typename
+            items {
+              __typename
+              id
+              workoutID
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateWorkoutSubscription>;
+
+  OnDeleteWorkoutListener: Observable<
+    OnDeleteWorkoutSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteWorkout {
+        onDeleteWorkout {
+          __typename
+          id
+          name
+          workoutDate
+          workoutNotes
+          exercises {
+            __typename
+            items {
+              __typename
+              id
+              workoutID
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteWorkoutSubscription>;
+
+  OnCreateExerciseListener: Observable<
+    OnCreateExerciseSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateExercise {
+        onCreateExercise {
+          __typename
+          id
+          workoutID
+          workout {
             __typename
             id
             name
-            description
-            city
+            workoutDate
+            workoutNotes
+            exercises {
+              __typename
+              nextToken
+            }
             createdAt
             updatedAt
           }
-          nextToken
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <ListRestaurantsQuery>response.data.listRestaurants;
-  }
-  OnCreateBlogListener: Observable<OnCreateBlogSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateBlog {
-        onCreateBlog {
-          __typename
-          id
           name
-          posts {
-            __typename
-            items {
-              __typename
-              id
-              title
-              blogID
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
+          notes
+          distance
+          distanceUnit
+          seconds
+          weight
+          setOrder
+          weightUnit
+          reps
           createdAt
           updatedAt
         }
       }`
     )
-  ) as Observable<OnCreateBlogSubscription>;
+  ) as Observable<OnCreateExerciseSubscription>;
 
-  OnUpdateBlogListener: Observable<OnUpdateBlogSubscription> = API.graphql(
+  OnUpdateExerciseListener: Observable<
+    OnUpdateExerciseSubscription
+  > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateBlog {
-        onUpdateBlog {
+      `subscription OnUpdateExercise {
+        onUpdateExercise {
           __typename
           id
-          name
-          posts {
-            __typename
-            items {
-              __typename
-              id
-              title
-              blogID
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnUpdateBlogSubscription>;
-
-  OnDeleteBlogListener: Observable<OnDeleteBlogSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteBlog {
-        onDeleteBlog {
-          __typename
-          id
-          name
-          posts {
-            __typename
-            items {
-              __typename
-              id
-              title
-              blogID
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnDeleteBlogSubscription>;
-
-  OnCreatePostListener: Observable<OnCreatePostSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnCreatePost {
-        onCreatePost {
-          __typename
-          id
-          title
-          blogID
-          blog {
+          workoutID
+          workout {
             __typename
             id
             name
-            posts {
+            workoutDate
+            workoutNotes
+            exercises {
               __typename
               nextToken
             }
             createdAt
             updatedAt
           }
-          comments {
-            __typename
-            items {
-              __typename
-              id
-              postID
-              content
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          weight
+          setOrder
+          weightUnit
+          reps
           createdAt
           updatedAt
         }
       }`
     )
-  ) as Observable<OnCreatePostSubscription>;
+  ) as Observable<OnUpdateExerciseSubscription>;
 
-  OnUpdatePostListener: Observable<OnUpdatePostSubscription> = API.graphql(
+  OnDeleteExerciseListener: Observable<
+    OnDeleteExerciseSubscription
+  > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdatePost {
-        onUpdatePost {
+      `subscription OnDeleteExercise {
+        onDeleteExercise {
           __typename
           id
-          title
-          blogID
-          blog {
+          workoutID
+          workout {
             __typename
             id
             name
-            posts {
+            workoutDate
+            workoutNotes
+            exercises {
               __typename
               nextToken
             }
             createdAt
             updatedAt
           }
-          comments {
-            __typename
-            items {
-              __typename
-              id
-              postID
-              content
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnUpdatePostSubscription>;
-
-  OnDeletePostListener: Observable<OnDeletePostSubscription> = API.graphql(
-    graphqlOperation(
-      `subscription OnDeletePost {
-        onDeletePost {
-          __typename
-          id
-          title
-          blogID
-          blog {
-            __typename
-            id
-            name
-            posts {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          comments {
-            __typename
-            items {
-              __typename
-              id
-              postID
-              content
-              createdAt
-              updatedAt
-            }
-            nextToken
-          }
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnDeletePostSubscription>;
-
-  OnCreateCommentListener: Observable<
-    OnCreateCommentSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateComment {
-        onCreateComment {
-          __typename
-          id
-          postID
-          post {
-            __typename
-            id
-            title
-            blogID
-            blog {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            comments {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          content
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnCreateCommentSubscription>;
-
-  OnUpdateCommentListener: Observable<
-    OnUpdateCommentSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateComment {
-        onUpdateComment {
-          __typename
-          id
-          postID
-          post {
-            __typename
-            id
-            title
-            blogID
-            blog {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            comments {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          content
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnUpdateCommentSubscription>;
-
-  OnDeleteCommentListener: Observable<
-    OnDeleteCommentSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteComment {
-        onDeleteComment {
-          __typename
-          id
-          postID
-          post {
-            __typename
-            id
-            title
-            blogID
-            blog {
-              __typename
-              id
-              name
-              createdAt
-              updatedAt
-            }
-            comments {
-              __typename
-              nextToken
-            }
-            createdAt
-            updatedAt
-          }
-          content
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnDeleteCommentSubscription>;
-
-  OnCreateRestaurantListener: Observable<
-    OnCreateRestaurantSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnCreateRestaurant {
-        onCreateRestaurant {
-          __typename
-          id
           name
-          description
-          city
+          notes
+          distance
+          distanceUnit
+          seconds
+          weight
+          setOrder
+          weightUnit
+          reps
           createdAt
           updatedAt
         }
       }`
     )
-  ) as Observable<OnCreateRestaurantSubscription>;
-
-  OnUpdateRestaurantListener: Observable<
-    OnUpdateRestaurantSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnUpdateRestaurant {
-        onUpdateRestaurant {
-          __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnUpdateRestaurantSubscription>;
-
-  OnDeleteRestaurantListener: Observable<
-    OnDeleteRestaurantSubscription
-  > = API.graphql(
-    graphqlOperation(
-      `subscription OnDeleteRestaurant {
-        onDeleteRestaurant {
-          __typename
-          id
-          name
-          description
-          city
-          createdAt
-          updatedAt
-        }
-      }`
-    )
-  ) as Observable<OnDeleteRestaurantSubscription>;
+  ) as Observable<OnDeleteExerciseSubscription>;
 }

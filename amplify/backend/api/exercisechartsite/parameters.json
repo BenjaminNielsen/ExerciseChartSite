@@ -1,5 +1,5 @@
 {
-    "AppSyncApiName": "WorkoutAPI",
+    "AppSyncApiName": "exercisechartsite",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": false
 }

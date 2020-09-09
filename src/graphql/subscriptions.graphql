@@ -1,13 +1,23 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateBlog {
-  onCreateBlog {
+subscription OnCreateWorkout {
+  onCreateWorkout {
     id
     name
-    posts {
+    workoutDate
+    workoutNotes
+    exercises {
       items {
         id
-        title
-        blogID
+        workoutID
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
         createdAt
         updatedAt
       }
@@ -17,15 +27,25 @@ subscription OnCreateBlog {
     updatedAt
   }
 }
-subscription OnUpdateBlog {
-  onUpdateBlog {
+subscription OnUpdateWorkout {
+  onUpdateWorkout {
     id
     name
-    posts {
+    workoutDate
+    workoutNotes
+    exercises {
       items {
         id
-        title
-        blogID
+        workoutID
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
         createdAt
         updatedAt
       }
@@ -35,15 +55,25 @@ subscription OnUpdateBlog {
     updatedAt
   }
 }
-subscription OnDeleteBlog {
-  onDeleteBlog {
+subscription OnDeleteWorkout {
+  onDeleteWorkout {
     id
     name
-    posts {
+    workoutDate
+    workoutNotes
+    exercises {
       items {
         id
-        title
-        blogID
+        workoutID
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
         createdAt
         updatedAt
       }
@@ -53,191 +83,86 @@ subscription OnDeleteBlog {
     updatedAt
   }
 }
-subscription OnCreatePost {
-  onCreatePost {
+subscription OnCreateExercise {
+  onCreateExercise {
     id
-    title
-    blogID
-    blog {
+    workoutID
+    workout {
       id
       name
-      posts {
+      workoutDate
+      workoutNotes
+      exercises {
         nextToken
       }
       createdAt
       updatedAt
     }
-    comments {
-      items {
-        id
-        postID
-        content
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    weight
+    setOrder
+    weightUnit
+    reps
     createdAt
     updatedAt
   }
 }
-subscription OnUpdatePost {
-  onUpdatePost {
+subscription OnUpdateExercise {
+  onUpdateExercise {
     id
-    title
-    blogID
-    blog {
+    workoutID
+    workout {
       id
       name
-      posts {
+      workoutDate
+      workoutNotes
+      exercises {
         nextToken
       }
       createdAt
       updatedAt
     }
-    comments {
-      items {
-        id
-        postID
-        content
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    weight
+    setOrder
+    weightUnit
+    reps
     createdAt
     updatedAt
   }
 }
-subscription OnDeletePost {
-  onDeletePost {
+subscription OnDeleteExercise {
+  onDeleteExercise {
     id
-    title
-    blogID
-    blog {
+    workoutID
+    workout {
       id
       name
-      posts {
+      workoutDate
+      workoutNotes
+      exercises {
         nextToken
       }
       createdAt
       updatedAt
     }
-    comments {
-      items {
-        id
-        postID
-        content
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateComment {
-  onCreateComment {
-    id
-    postID
-    post {
-      id
-      title
-      blogID
-      blog {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      comments {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    content
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateComment {
-  onUpdateComment {
-    id
-    postID
-    post {
-      id
-      title
-      blogID
-      blog {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      comments {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    content
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteComment {
-  onDeleteComment {
-    id
-    postID
-    post {
-      id
-      title
-      blogID
-      blog {
-        id
-        name
-        createdAt
-        updatedAt
-      }
-      comments {
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-    content
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateRestaurant {
-  onCreateRestaurant {
-    id
     name
-    description
-    city
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateRestaurant {
-  onUpdateRestaurant {
-    id
-    name
-    description
-    city
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteRestaurant {
-  onDeleteRestaurant {
-    id
-    name
-    description
-    city
+    notes
+    distance
+    distanceUnit
+    seconds
+    weight
+    setOrder
+    weightUnit
+    reps
     createdAt
     updatedAt
   }

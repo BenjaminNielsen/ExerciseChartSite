@@ -16,7 +16,8 @@
     </clr-toggle-container>
   </div>
 
-  <canvas baseChart
+  <clr-spinner *ngIf="loading">Loading data</clr-spinner>
+  <canvas *ngIf="!loading" baseChart
           [datasets]="lineChartData"
           [options]="lineChartOptions"
           [colors]="lineChartColors"

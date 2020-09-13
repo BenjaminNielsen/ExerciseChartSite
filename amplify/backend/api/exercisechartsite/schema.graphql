@@ -1,0 +1,24 @@
+type Workout @model {
+  id: ID!
+  name: String!
+  workoutDate: String!
+  workoutNotes: String
+  exercises: [Exercise] @connection(keyName: "byWorkout", fields: ["id"])
+}
+
+type Exercise @model @key(name: "byWorkout", fields: ["workoutID"]){
+  id: ID!
+  workoutID: ID!
+  workout: Workout @connection(fields: ["workoutID"])
+  isMuscleExercise: Boolean!
+  exerciseDate: AWSDateTime!
+  name: String!
+  notes: String
+  distance: Float
+  distanceUnit: String
+  seconds: Int
+  weight: Float
+  setOrder: Int
+  weightUnit: String
+  reps: Int
+}

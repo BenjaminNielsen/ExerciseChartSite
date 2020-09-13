@@ -1,4 +1,4 @@
-import { MuscleExercise } from './muscle-exercise'
+import {MuscleExercise} from './muscle-exercise'
 
 describe('MuscleExercise', () => {
   it('should create an instance', () => {

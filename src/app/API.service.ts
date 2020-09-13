@@ -75,6 +75,8 @@ export type DeleteWorkoutInput = {
 export type CreateExerciseInput = {
   id?: string | null;
   workoutID: string;
+  isMuscleExercise: boolean;
+  exerciseDate: string;
   name: string;
   notes?: string | null;
   distance?: number | null;
@@ -88,6 +90,8 @@ export type CreateExerciseInput = {
 
 export type ModelExerciseConditionInput = {
   workoutID?: ModelIDInput | null;
+  isMuscleExercise?: ModelBooleanInput | null;
+  exerciseDate?: ModelStringInput | null;
   name?: ModelStringInput | null;
   notes?: ModelStringInput | null;
   distance?: ModelFloatInput | null;
@@ -118,6 +122,13 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
+export type ModelBooleanInput = {
+  ne?: boolean | null;
+  eq?: boolean | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+};
+
 export type ModelFloatInput = {
   ne?: number | null;
   eq?: number | null;
@@ -145,6 +156,8 @@ export type ModelIntInput = {
 export type UpdateExerciseInput = {
   id: string;
   workoutID?: string | null;
+  isMuscleExercise?: boolean | null;
+  exerciseDate?: string | null;
   name?: string | null;
   notes?: string | null;
   distance?: number | null;
@@ -173,6 +186,8 @@ export type ModelWorkoutFilterInput = {
 export type ModelExerciseFilterInput = {
   id?: ModelIDInput | null;
   workoutID?: ModelIDInput | null;
+  isMuscleExercise?: ModelBooleanInput | null;
+  exerciseDate?: ModelStringInput | null;
   name?: ModelStringInput | null;
   notes?: ModelStringInput | null;
   distance?: ModelFloatInput | null;
@@ -199,6 +214,8 @@ export type CreateWorkoutMutation = {
       __typename: "Exercise";
       id: string;
       workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
       name: string;
       notes: string | null;
       distance: number | null;
@@ -229,6 +246,8 @@ export type UpdateWorkoutMutation = {
       __typename: "Exercise";
       id: string;
       workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
       name: string;
       notes: string | null;
       distance: number | null;
@@ -259,6 +278,8 @@ export type DeleteWorkoutMutation = {
       __typename: "Exercise";
       id: string;
       workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
       name: string;
       notes: string | null;
       distance: number | null;
@@ -294,6 +315,8 @@ export type CreateExerciseMutation = {
     createdAt: string;
     updatedAt: string;
   } | null;
+  isMuscleExercise: boolean;
+  exerciseDate: string;
   name: string;
   notes: string | null;
   distance: number | null;
@@ -324,6 +347,8 @@ export type UpdateExerciseMutation = {
     createdAt: string;
     updatedAt: string;
   } | null;
+  isMuscleExercise: boolean;
+  exerciseDate: string;
   name: string;
   notes: string | null;
   distance: number | null;
@@ -354,6 +379,8 @@ export type DeleteExerciseMutation = {
     createdAt: string;
     updatedAt: string;
   } | null;
+  isMuscleExercise: boolean;
+  exerciseDate: string;
   name: string;
   notes: string | null;
   distance: number | null;
@@ -379,6 +406,8 @@ export type GetWorkoutQuery = {
       __typename: "Exercise";
       id: string;
       workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
       name: string;
       notes: string | null;
       distance: number | null;
@@ -432,6 +461,8 @@ export type GetExerciseQuery = {
     createdAt: string;
     updatedAt: string;
   } | null;
+  isMuscleExercise: boolean;
+  exerciseDate: string;
   name: string;
   notes: string | null;
   distance: number | null;
@@ -460,6 +491,8 @@ export type ListExercisesQuery = {
       createdAt: string;
       updatedAt: string;
     } | null;
+    isMuscleExercise: boolean;
+    exerciseDate: string;
     name: string;
     notes: string | null;
     distance: number | null;
@@ -487,6 +520,8 @@ export type OnCreateWorkoutSubscription = {
       __typename: "Exercise";
       id: string;
       workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
       name: string;
       notes: string | null;
       distance: number | null;
@@ -517,6 +552,8 @@ export type OnUpdateWorkoutSubscription = {
       __typename: "Exercise";
       id: string;
       workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
       name: string;
       notes: string | null;
       distance: number | null;
@@ -547,6 +584,8 @@ export type OnDeleteWorkoutSubscription = {
       __typename: "Exercise";
       id: string;
       workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
       name: string;
       notes: string | null;
       distance: number | null;
@@ -582,6 +621,8 @@ export type OnCreateExerciseSubscription = {
     createdAt: string;
     updatedAt: string;
   } | null;
+  isMuscleExercise: boolean;
+  exerciseDate: string;
   name: string;
   notes: string | null;
   distance: number | null;
@@ -612,6 +653,8 @@ export type OnUpdateExerciseSubscription = {
     createdAt: string;
     updatedAt: string;
   } | null;
+  isMuscleExercise: boolean;
+  exerciseDate: string;
   name: string;
   notes: string | null;
   distance: number | null;
@@ -642,6 +685,8 @@ export type OnDeleteExerciseSubscription = {
     createdAt: string;
     updatedAt: string;
   } | null;
+  isMuscleExercise: boolean;
+  exerciseDate: string;
   name: string;
   notes: string | null;
   distance: number | null;
@@ -676,6 +721,8 @@ export class APIService {
               __typename
               id
               workoutID
+              isMuscleExercise
+              exerciseDate
               name
               notes
               distance
@@ -722,6 +769,8 @@ export class APIService {
               __typename
               id
               workoutID
+              isMuscleExercise
+              exerciseDate
               name
               notes
               distance
@@ -768,6 +817,8 @@ export class APIService {
               __typename
               id
               workoutID
+              isMuscleExercise
+              exerciseDate
               name
               notes
               distance
@@ -819,6 +870,8 @@ export class APIService {
             createdAt
             updatedAt
           }
+          isMuscleExercise
+          exerciseDate
           name
           notes
           distance
@@ -865,6 +918,8 @@ export class APIService {
             createdAt
             updatedAt
           }
+          isMuscleExercise
+          exerciseDate
           name
           notes
           distance
@@ -911,6 +966,8 @@ export class APIService {
             createdAt
             updatedAt
           }
+          isMuscleExercise
+          exerciseDate
           name
           notes
           distance
@@ -949,6 +1006,8 @@ export class APIService {
               __typename
               id
               workoutID
+              isMuscleExercise
+              exerciseDate
               name
               notes
               distance
@@ -1033,6 +1092,8 @@ export class APIService {
             createdAt
             updatedAt
           }
+          isMuscleExercise
+          exerciseDate
           name
           notes
           distance
@@ -1075,6 +1136,8 @@ export class APIService {
               createdAt
               updatedAt
             }
+            isMuscleExercise
+            exerciseDate
             name
             notes
             distance
@@ -1122,6 +1185,8 @@ export class APIService {
               __typename
               id
               workoutID
+              isMuscleExercise
+              exerciseDate
               name
               notes
               distance
@@ -1160,6 +1225,8 @@ export class APIService {
               __typename
               id
               workoutID
+              isMuscleExercise
+              exerciseDate
               name
               notes
               distance
@@ -1198,6 +1265,8 @@ export class APIService {
               __typename
               id
               workoutID
+              isMuscleExercise
+              exerciseDate
               name
               notes
               distance
@@ -1241,6 +1310,8 @@ export class APIService {
             createdAt
             updatedAt
           }
+          isMuscleExercise
+          exerciseDate
           name
           notes
           distance
@@ -1279,6 +1350,8 @@ export class APIService {
             createdAt
             updatedAt
           }
+          isMuscleExercise
+          exerciseDate
           name
           notes
           distance
@@ -1317,6 +1390,8 @@ export class APIService {
             createdAt
             updatedAt
           }
+          isMuscleExercise
+          exerciseDate
           name
           notes
           distance

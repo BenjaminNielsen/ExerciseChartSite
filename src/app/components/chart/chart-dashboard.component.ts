@@ -11,16 +11,16 @@ import {DefaultExercises} from '../../domain/constants/defaultExercises'
 export class ChartDashboardComponent implements OnInit {
 
   public defaultExerciseNames = DefaultExercises.defaultExerciseNames
-  public workoutData: WorkoutData[]
-  public selectedExercise: string
+  // TODO remove public workoutData: WorkoutData[]
+  //public selectedExercise: string
 
-  public exerciseNames: string[]
+  //public exerciseNames: string[]
 
   constructor( public workoutService: WorkoutService ) { }
 
   ngOnInit(): void {
-    this.workoutService.getWorkouts().subscribe((workouts) => this.workoutData = workouts)
-    this.workoutService.getWorkouts().subscribe((workouts) => this.exerciseNames = this.workoutService.getExerciseNames(workouts))
+    //TODO remove this.workoutService.getWorkouts().subscribe((workouts) => this.workoutData = workouts)
+    // this.workoutService.getWorkouts().subscribe((workouts) => this.exerciseNames = this.workoutService.getExerciseNames(workouts))
   }
 
 }

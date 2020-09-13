@@ -9,6 +9,8 @@ subscription OnCreateWorkout {
       items {
         id
         workoutID
+        isMuscleExercise
+        exerciseDate
         name
         notes
         distance
@@ -37,6 +39,8 @@ subscription OnUpdateWorkout {
       items {
         id
         workoutID
+        isMuscleExercise
+        exerciseDate
         name
         notes
         distance
@@ -65,6 +69,8 @@ subscription OnDeleteWorkout {
       items {
         id
         workoutID
+        isMuscleExercise
+        exerciseDate
         name
         notes
         distance
@@ -98,6 +104,8 @@ subscription OnCreateExercise {
       createdAt
       updatedAt
     }
+    isMuscleExercise
+    exerciseDate
     name
     notes
     distance
@@ -126,6 +134,8 @@ subscription OnUpdateExercise {
       createdAt
       updatedAt
     }
+    isMuscleExercise
+    exerciseDate
     name
     notes
     distance
@@ -154,6 +164,8 @@ subscription OnDeleteExercise {
       createdAt
       updatedAt
     }
+    isMuscleExercise
+    exerciseDate
     name
     notes
     distance

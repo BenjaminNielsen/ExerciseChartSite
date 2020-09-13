@@ -7,14 +7,13 @@
 <!--  </select>-->
 <!--</label>-->
 
-<div *ngIf="workoutData">
+<div>
   <div class="clr-col-lg-6 clr-col-sm-12" style="display: inline-block" *ngFor="let defaultName of defaultExerciseNames">
     <div class="card">
       <div class="card-header">
         {{defaultName}}
       </div>
-      <app-muscle-exercise-chart [exerciseName]="defaultName"
-                                 [exercisesMap]="workoutService.getDateMappedMuscleSets(defaultName, workoutData)">
+      <app-muscle-exercise-chart [exerciseName]="defaultName">
       </app-muscle-exercise-chart>
     </div>
   </div>

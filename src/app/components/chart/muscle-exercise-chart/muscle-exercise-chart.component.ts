@@ -4,6 +4,7 @@ import {MuscleExercise} from '../../../domain/exercise/MuscleExercise/muscle-exe
 import {Color, Label} from 'ng2-charts'
 import {MuscleChartPoint} from '../../../domain/chart/MuscleChartPoint'
 import {ExerciseCalculationServiceService} from '../../../services/exercise/exercise-calculation-service.service'
+import {APIService, ListExercisesQuery} from '../../../API.service'
 
 @Component({
   selector: 'app-muscle-exercise-chart',
@@ -13,8 +14,9 @@ import {ExerciseCalculationServiceService} from '../../../services/exercise/exer
 export class MuscleExerciseChartComponent implements OnInit {
 
   @Input() exerciseName: string
-  @Input() exercisesMap: Map<Date, MuscleExercise[]>
+  exercisesMap: Map<string, MuscleExercise[]>
 
+  public loading = true
   public lineChartData: ChartDataSets[]
   public lineChartLabels: Label[]
   public lineChartOptions: ChartOptions
@@ -26,12 +28,34 @@ export class MuscleExerciseChartComponent implements OnInit {
 
   private weightUnit: string
 
-  constructor(public calculator: ExerciseCalculationServiceService) {
-  }
+  constructor(public calculator: ExerciseCalculationServiceService,
+              public workoutApi: APIService) { }
 
   ngOnInit(): void {
-    this.weightUnit = this.exercisesMap.values().next().value.weightUnit
-    this.generateChart()
+    this.workoutApi.ListExercises({name : {
+        eq: this.exerciseName
+      }
+    }).then((event: ListExercisesQuery ) => {
+      const exercisesList = event.items
+      console.log('Total exercises for ' + this.exerciseName + ' is ' + exercisesList.length)
+      this.weightUnit = exercisesList[0].weightUnit
+
+      this.exercisesMap = exercisesList.reduce((map: Map<string, MuscleExercise[]>, muscleExercise) => {
+        const exerciseDate = muscleExercise.exerciseDate
+        if (map.has(exerciseDate)){
+          map.get(exerciseDate).push(muscleExercise)
+        } else {
+          map.set(exerciseDate, [muscleExercise])
+        }
+        return map
+      }, new Map<string, MuscleExercise[]>())
+
+      console.log(this.exercisesMap)
+
+      this.generateChart()
+      this.loading = false
+    })
+
   }
 
   generateChart(): void {
@@ -60,7 +84,7 @@ export class MuscleExerciseChartComponent implements OnInit {
   getChartPoints(predicate: (exercises: MuscleExercise[]) => number): Chart.ChartPoint[] {
     const chartPoints: MuscleChartPoint[] = []
     for (const [key, value] of this.exercisesMap) {
-      chartPoints.push({t: key, y: predicate(value)})
+      chartPoints.push({t: new Date(key), y: predicate(value)})
     }
     return chartPoints.sort((a, b) => b.t.valueOf() - a.t.valueOf())
   }

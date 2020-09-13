@@ -9,6 +9,8 @@ query GetWorkout($id: ID!) {
       items {
         id
         workoutID
+        isMuscleExercise
+        exerciseDate
         name
         notes
         distance
@@ -62,6 +64,8 @@ query GetExercise($id: ID!) {
       createdAt
       updatedAt
     }
+    isMuscleExercise
+    exerciseDate
     name
     notes
     distance
@@ -92,6 +96,8 @@ query ListExercises(
         createdAt
         updatedAt
       }
+      isMuscleExercise
+      exerciseDate
       name
       notes
       distance

@@ -10,6 +10,8 @@ type Exercise @model @key(name: "byWorkout", fields: ["workoutID"]){
   id: ID!
   workoutID: ID!
   workout: Workout @connection(fields: ["workoutID"])
+  isMuscleExercise: Boolean!
+  exerciseDate: AWSDateTime!
   name: String!
   notes: String
   distance: Float

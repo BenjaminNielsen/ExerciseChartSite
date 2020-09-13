@@ -9,14 +9,12 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {ChartsModule} from 'ng2-charts'
 import { ClarityModule } from '@clr/angular'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { GraphApiTestComponent } from './components/graph-api-test/graph-api-test.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     ChartDashboardComponent,
     MuscleExerciseChartComponent,
-    GraphApiTestComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ import {MuscleExercise} from '../../../domain/exercise/MuscleExercise/muscle-exe
 import {Color, Label} from 'ng2-charts'
 import {MuscleChartPoint} from '../../../domain/chart/MuscleChartPoint'
 import {ExerciseCalculationServiceService} from '../../../services/exercise/exercise-calculation-service.service'
-import {APIService, ListExercisesQuery} from '../../../API.service'
+import {APIService, ListExercisesQuery} from '../../../services/API.service'
 
 @Component({
   selector: 'app-muscle-exercise-chart',
@@ -35,9 +35,9 @@ export class MuscleExerciseChartComponent implements OnInit {
     this.workoutApi.ListExercises({name : {
         eq: this.exerciseName
       }
-    }).then((event: ListExercisesQuery ) => {
+      // TODO maybe add sort keys for commonly sorted parts
+    }, 1000).then((event: ListExercisesQuery ) => {
       const exercisesList = event.items
-      console.log('Total exercises for ' + this.exerciseName + ' is ' + exercisesList.length)
       this.weightUnit = exercisesList[0].weightUnit
 
       this.exercisesMap = exercisesList.reduce((map: Map<string, any[]>, muscleExercise) => {
@@ -49,8 +49,6 @@ export class MuscleExerciseChartComponent implements OnInit {
         }
         return map
       }, new Map<string, MuscleExercise[]>())
-
-      console.log(this.exercisesMap)
 
       this.generateChart()
       this.loading = false

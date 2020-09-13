@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core'
+import {Injectable} from '@angular/core'
 import {MuscleExercise} from '../../domain/exercise/MuscleExercise/muscle-exercise'
 
 @Injectable({

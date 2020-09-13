@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core'
-import {WorkoutData} from '../../domain/workout/workout-data'
-import {WorkoutService} from '../../services/workout/workout.service'
+import {Component, OnInit} from '@angular/core'
 import {DefaultExercises} from '../../domain/constants/defaultExercises'
 
 @Component({
@@ -11,16 +9,9 @@ import {DefaultExercises} from '../../domain/constants/defaultExercises'
 export class ChartDashboardComponent implements OnInit {
 
   public defaultExerciseNames = DefaultExercises.defaultExerciseNames
-  // TODO remove public workoutData: WorkoutData[]
-  //public selectedExercise: string
 
-  //public exerciseNames: string[]
+  constructor( ) { }
 
-  constructor( public workoutService: WorkoutService ) { }
-
-  ngOnInit(): void {
-    //TODO remove this.workoutService.getWorkouts().subscribe((workouts) => this.workoutData = workouts)
-    // this.workoutService.getWorkouts().subscribe((workouts) => this.exerciseNames = this.workoutService.getExerciseNames(workouts))
-  }
+  ngOnInit(): void {  }
 
 }

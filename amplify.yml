@@ -1,0 +1,17 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - if [ "${AWS_BRANCH}" = "master" ]; then npm run buildProd; fi
+        - if [ "${AWS_BRANCH}" = "dev" ]; then npm run build; fi
+  artifacts:
+    baseDirectory: dist/exercise-chart-site
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*

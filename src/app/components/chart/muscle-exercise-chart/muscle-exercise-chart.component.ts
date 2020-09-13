@@ -40,7 +40,7 @@ export class MuscleExerciseChartComponent implements OnInit {
       console.log('Total exercises for ' + this.exerciseName + ' is ' + exercisesList.length)
       this.weightUnit = exercisesList[0].weightUnit
 
-      this.exercisesMap = exercisesList.reduce((map: Map<string, MuscleExercise[]>, muscleExercise) => {
+      this.exercisesMap = exercisesList.reduce((map: Map<string, any[]>, muscleExercise) => {
         const exerciseDate = muscleExercise.exerciseDate
         if (map.has(exerciseDate)){
           map.get(exerciseDate).push(muscleExercise)

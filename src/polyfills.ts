@@ -57,6 +57,11 @@
  */
 import 'zone.js/dist/zone'  // Included with Angular CLI.
 
+// added global as per aws docs https://docs.amplify.aws/start/getting-started/setup/q/integration/angular
+(window as any).global = window;
+(window as any).process = {
+  env: { DEBUG: undefined },
+}
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

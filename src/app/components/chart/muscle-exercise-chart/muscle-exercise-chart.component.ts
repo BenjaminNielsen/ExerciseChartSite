@@ -29,20 +29,21 @@ export class MuscleExerciseChartComponent implements OnInit {
   private weightUnit: string
 
   constructor(public calculator: ExerciseCalculationServiceService,
-              public workoutApi: APIService) { }
+              public workoutApi: APIService) {
+  }
 
   ngOnInit(): void {
-    this.workoutApi.ListExercises({name : {
+    this.workoutApi.ListExercises({
+      name: {
         eq: this.exerciseName
       }
-      // TODO maybe add sort keys for commonly sorted parts
-    }, 1000).then((event: ListExercisesQuery ) => {
+    }).then((event: ListExercisesQuery) => {
       const exercisesList = event.items
       this.weightUnit = exercisesList[0].weightUnit
 
       this.exercisesMap = exercisesList.reduce((map: Map<string, any[]>, muscleExercise) => {
         const exerciseDate = muscleExercise.exerciseDate
-        if (map.has(exerciseDate)){
+        if (map.has(exerciseDate)) {
           map.get(exerciseDate).push(muscleExercise)
         } else {
           map.set(exerciseDate, [muscleExercise])

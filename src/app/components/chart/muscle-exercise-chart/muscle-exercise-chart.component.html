@@ -1,28 +1,33 @@
 <div>
   <div>
-    <clr-toggle-container clrInline (change)="onChange()">
+    <clr-toggle-container (change)="onChange()" clrInline>
       <clr-toggle-wrapper>
-          <input id="topWeightOption-{{exerciseName}}" type="checkbox" clrToggle value="topWeight" [(ngModel)]="options.topWeight"/>
+        <input [(ngModel)]="options.topWeight" clrToggle id="topWeightOption-{{exerciseName}}" type="checkbox" value="topWeight"/>
         <label for="topWeightOption-{{exerciseName}}"> Weight</label>
       </clr-toggle-wrapper>
       <clr-toggle-wrapper>
-          <input id="OneRepMaxOption-{{exerciseName}}" type="checkbox" clrToggle value="OneRepMax" [(ngModel)]="options.OneRepMax"/>
-        <label for="OneRepMaxOption-{{exerciseName}}"> 1RMax! </label>
+        <input [(ngModel)]="options.OneRepMax" clrToggle id="OneRepMaxOption-{{exerciseName}}" type="checkbox" value="OneRepMax"/>
+        <label for="OneRepMaxOption-{{exerciseName}}"> 1RM </label>
       </clr-toggle-wrapper>
       <clr-toggle-wrapper>
-          <input id="totalVolumeOption-{{exerciseName}}" type="checkbox" clrToggle value="totalVolume" [(ngModel)]="options.totalVolume"/>
+        <input [(ngModel)]="options.totalVolume" clrToggle id="totalVolumeOption-{{exerciseName}}" type="checkbox" value="totalVolume"/>
         <label for="totalVolumeOption-{{exerciseName}}"> Total Volume </label>
       </clr-toggle-wrapper>
     </clr-toggle-container>
   </div>
+  <div *ngIf="loading; then loadingIcon else chartBlock"></div>
+  <ng-template #loadingIcon>
+    <clr-spinner>Loading data</clr-spinner>
+  </ng-template>
+  <ng-template #chartBlock>
+    <canvas [chartType]="lineChartType"
+            [colors]="lineChartColors"
+            [datasets]="lineChartData"
+            [legend]="lineChartLegend"
+            [options]="lineChartOptions"
+            [plugins]="lineChartPlugins"
+            baseChart>
+    </canvas>
+  </ng-template>
 
-  <clr-spinner *ngIf="loading">Loading data</clr-spinner>
-  <canvas *ngIf="!loading" baseChart
-          [datasets]="lineChartData"
-          [options]="lineChartOptions"
-          [colors]="lineChartColors"
-          [legend]="lineChartLegend"
-          [chartType]="lineChartType"
-          [plugins]="lineChartPlugins">
-  </canvas>
 </div>

@@ -55,7 +55,7 @@
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone'  // Included with Angular CLI.
+import 'zone.js/dist/zone' // Included with Angular CLI.
 
 // added global as per aws docs https://docs.amplify.aws/start/getting-started/setup/q/integration/angular
 (window as any).global = window;

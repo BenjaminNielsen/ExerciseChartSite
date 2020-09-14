@@ -1,0 +1,238 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateWorkout {
+  onCreateWorkout {
+    id
+    name
+    workoutDate
+    workoutNotes
+    exercises {
+      id
+      workoutID
+      workout {
+        id
+        name
+        workoutDate
+        workoutNotes
+        createdAt
+        updatedAt
+      }
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateWorkout {
+  onUpdateWorkout {
+    id
+    name
+    workoutDate
+    workoutNotes
+    exercises {
+      id
+      workoutID
+      workout {
+        id
+        name
+        workoutDate
+        workoutNotes
+        createdAt
+        updatedAt
+      }
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteWorkout {
+  onDeleteWorkout {
+    id
+    name
+    workoutDate
+    workoutNotes
+    exercises {
+      id
+      workoutID
+      workout {
+        id
+        name
+        workoutDate
+        workoutNotes
+        createdAt
+        updatedAt
+      }
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateExercise {
+  onCreateExercise {
+    id
+    workoutID
+    workout {
+      id
+      name
+      workoutDate
+      workoutNotes
+      exercises {
+        id
+        workoutID
+        isMuscleExercise
+        exerciseDate
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    isMuscleExercise
+    exerciseDate
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    weight
+    setOrder
+    weightUnit
+    reps
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateExercise {
+  onUpdateExercise {
+    id
+    workoutID
+    workout {
+      id
+      name
+      workoutDate
+      workoutNotes
+      exercises {
+        id
+        workoutID
+        isMuscleExercise
+        exerciseDate
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    isMuscleExercise
+    exerciseDate
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    weight
+    setOrder
+    weightUnit
+    reps
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteExercise {
+  onDeleteExercise {
+    id
+    workoutID
+    workout {
+      id
+      name
+      workoutDate
+      workoutNotes
+      exercises {
+        id
+        workoutID
+        isMuscleExercise
+        exerciseDate
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+    isMuscleExercise
+    exerciseDate
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    weight
+    setOrder
+    weightUnit
+    reps
+    createdAt
+    updatedAt
+  }
+}

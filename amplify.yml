@@ -6,8 +6,7 @@ frontend:
         - npm ci
     build:
       commands:
-        - if [ "${AWS_BRANCH}" = "master" ]; then npm run buildProd; fi
-        - if [ "${AWS_BRANCH}" = "dev" ]; then npm run build; fi
+        - npm run build
   artifacts:
     baseDirectory: dist/exercise-chart-site
     files:

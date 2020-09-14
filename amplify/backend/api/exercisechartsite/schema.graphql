@@ -3,10 +3,10 @@ type Workout @model {
   name: String!
   workoutDate: String!
   workoutNotes: String
-  exercises: [Exercise] @connection(keyName: "byWorkout", fields: ["id"])
+  exercises: [Exercise]
 }
 
-type Exercise @model @key(name: "byWorkout", fields: ["workoutID"]){
+type Exercise @model @key(name: "byName", fields: ["name"], queryField: "exercisesByName"){
   id: ID!
   workoutID: ID!
   workout: Workout @connection(fields: ["workoutID"])

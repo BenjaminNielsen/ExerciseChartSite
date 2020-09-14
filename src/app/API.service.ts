@@ -1,9 +1,9 @@
 /* tslint:disable */
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
-import {Injectable} from '@angular/core'
-import API, {graphqlOperation} from '@aws-amplify/api'
-import {Observable} from 'zen-observable-ts'
+import { Injectable } from "@angular/core";
+import API, { graphqlOperation } from "@aws-amplify/api";
+import { Observable } from "zen-observable-ts";
 
 export type CreateWorkoutInput = {
   id?: string | null;
@@ -201,34 +201,44 @@ export type ModelExerciseFilterInput = {
   not?: ModelExerciseFilterInput | null;
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC"
+}
+
 export type CreateWorkoutMutation = {
   __typename: "Workout";
   id: string;
   name: string;
   workoutDate: string;
   workoutNotes: string | null;
-  exercises: {
-    __typename: "ModelExerciseConnection";
-    items: Array<{
-      __typename: "Exercise";
+  exercises: Array<{
+    __typename: "Exercise";
+    id: string;
+    workoutID: string;
+    workout: {
+      __typename: "Workout";
       id: string;
-      workoutID: string;
-      isMuscleExercise: boolean;
-      exerciseDate: string;
       name: string;
-      notes: string | null;
-      distance: number | null;
-      distanceUnit: string | null;
-      seconds: number | null;
-      weight: number | null;
-      setOrder: number | null;
-      weightUnit: string | null;
-      reps: number | null;
+      workoutDate: string;
+      workoutNotes: string | null;
       createdAt: string;
       updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
+    } | null;
+    isMuscleExercise: boolean;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -239,28 +249,33 @@ export type UpdateWorkoutMutation = {
   name: string;
   workoutDate: string;
   workoutNotes: string | null;
-  exercises: {
-    __typename: "ModelExerciseConnection";
-    items: Array<{
-      __typename: "Exercise";
+  exercises: Array<{
+    __typename: "Exercise";
+    id: string;
+    workoutID: string;
+    workout: {
+      __typename: "Workout";
       id: string;
-      workoutID: string;
-      isMuscleExercise: boolean;
-      exerciseDate: string;
       name: string;
-      notes: string | null;
-      distance: number | null;
-      distanceUnit: string | null;
-      seconds: number | null;
-      weight: number | null;
-      setOrder: number | null;
-      weightUnit: string | null;
-      reps: number | null;
+      workoutDate: string;
+      workoutNotes: string | null;
       createdAt: string;
       updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
+    } | null;
+    isMuscleExercise: boolean;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -271,28 +286,33 @@ export type DeleteWorkoutMutation = {
   name: string;
   workoutDate: string;
   workoutNotes: string | null;
-  exercises: {
-    __typename: "ModelExerciseConnection";
-    items: Array<{
-      __typename: "Exercise";
+  exercises: Array<{
+    __typename: "Exercise";
+    id: string;
+    workoutID: string;
+    workout: {
+      __typename: "Workout";
       id: string;
-      workoutID: string;
-      isMuscleExercise: boolean;
-      exerciseDate: string;
       name: string;
-      notes: string | null;
-      distance: number | null;
-      distanceUnit: string | null;
-      seconds: number | null;
-      weight: number | null;
-      setOrder: number | null;
-      weightUnit: string | null;
-      reps: number | null;
+      workoutDate: string;
+      workoutNotes: string | null;
       createdAt: string;
       updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
+    } | null;
+    isMuscleExercise: boolean;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -307,10 +327,24 @@ export type CreateExerciseMutation = {
     name: string;
     workoutDate: string;
     workoutNotes: string | null;
-    exercises: {
-      __typename: "ModelExerciseConnection";
-      nextToken: string | null;
-    } | null;
+    exercises: Array<{
+      __typename: "Exercise";
+      id: string;
+      workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -339,10 +373,24 @@ export type UpdateExerciseMutation = {
     name: string;
     workoutDate: string;
     workoutNotes: string | null;
-    exercises: {
-      __typename: "ModelExerciseConnection";
-      nextToken: string | null;
-    } | null;
+    exercises: Array<{
+      __typename: "Exercise";
+      id: string;
+      workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -371,10 +419,24 @@ export type DeleteExerciseMutation = {
     name: string;
     workoutDate: string;
     workoutNotes: string | null;
-    exercises: {
-      __typename: "ModelExerciseConnection";
-      nextToken: string | null;
-    } | null;
+    exercises: Array<{
+      __typename: "Exercise";
+      id: string;
+      workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -399,9 +461,46 @@ export type GetWorkoutQuery = {
   name: string;
   workoutDate: string;
   workoutNotes: string | null;
-  exercises: {
-    __typename: "ModelExerciseConnection";
-    items: Array<{
+  exercises: Array<{
+    __typename: "Exercise";
+    id: string;
+    workoutID: string;
+    workout: {
+      __typename: "Workout";
+      id: string;
+      name: string;
+      workoutDate: string;
+      workoutNotes: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    isMuscleExercise: boolean;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListWorkoutsQuery = {
+  __typename: "ModelWorkoutConnection";
+  items: Array<{
+    __typename: "Workout";
+    id: string;
+    name: string;
+    workoutDate: string;
+    workoutNotes: string | null;
+    exercises: Array<{
       __typename: "Exercise";
       id: string;
       workoutID: string;
@@ -419,24 +518,6 @@ export type GetWorkoutQuery = {
       createdAt: string;
       updatedAt: string;
     } | null> | null;
-    nextToken: string | null;
-  } | null;
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type ListWorkoutsQuery = {
-  __typename: "ModelWorkoutConnection";
-  items: Array<{
-    __typename: "Workout";
-    id: string;
-    name: string;
-    workoutDate: string;
-    workoutNotes: string | null;
-    exercises: {
-      __typename: "ModelExerciseConnection";
-      nextToken: string | null;
-    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -453,10 +534,24 @@ export type GetExerciseQuery = {
     name: string;
     workoutDate: string;
     workoutNotes: string | null;
-    exercises: {
-      __typename: "ModelExerciseConnection";
-      nextToken: string | null;
-    } | null;
+    exercises: Array<{
+      __typename: "Exercise";
+      id: string;
+      workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -507,34 +602,71 @@ export type ListExercisesQuery = {
   nextToken: string | null;
 };
 
+export type ExercisesByNameQuery = {
+  __typename: "ModelExerciseConnection";
+  items: Array<{
+    __typename: "Exercise";
+    id: string;
+    workoutID: string;
+    workout: {
+      __typename: "Workout";
+      id: string;
+      name: string;
+      workoutDate: string;
+      workoutNotes: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    isMuscleExercise: boolean;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
 export type OnCreateWorkoutSubscription = {
   __typename: "Workout";
   id: string;
   name: string;
   workoutDate: string;
   workoutNotes: string | null;
-  exercises: {
-    __typename: "ModelExerciseConnection";
-    items: Array<{
-      __typename: "Exercise";
+  exercises: Array<{
+    __typename: "Exercise";
+    id: string;
+    workoutID: string;
+    workout: {
+      __typename: "Workout";
       id: string;
-      workoutID: string;
-      isMuscleExercise: boolean;
-      exerciseDate: string;
       name: string;
-      notes: string | null;
-      distance: number | null;
-      distanceUnit: string | null;
-      seconds: number | null;
-      weight: number | null;
-      setOrder: number | null;
-      weightUnit: string | null;
-      reps: number | null;
+      workoutDate: string;
+      workoutNotes: string | null;
       createdAt: string;
       updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
+    } | null;
+    isMuscleExercise: boolean;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -545,28 +677,33 @@ export type OnUpdateWorkoutSubscription = {
   name: string;
   workoutDate: string;
   workoutNotes: string | null;
-  exercises: {
-    __typename: "ModelExerciseConnection";
-    items: Array<{
-      __typename: "Exercise";
+  exercises: Array<{
+    __typename: "Exercise";
+    id: string;
+    workoutID: string;
+    workout: {
+      __typename: "Workout";
       id: string;
-      workoutID: string;
-      isMuscleExercise: boolean;
-      exerciseDate: string;
       name: string;
-      notes: string | null;
-      distance: number | null;
-      distanceUnit: string | null;
-      seconds: number | null;
-      weight: number | null;
-      setOrder: number | null;
-      weightUnit: string | null;
-      reps: number | null;
+      workoutDate: string;
+      workoutNotes: string | null;
       createdAt: string;
       updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
+    } | null;
+    isMuscleExercise: boolean;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -577,28 +714,33 @@ export type OnDeleteWorkoutSubscription = {
   name: string;
   workoutDate: string;
   workoutNotes: string | null;
-  exercises: {
-    __typename: "ModelExerciseConnection";
-    items: Array<{
-      __typename: "Exercise";
+  exercises: Array<{
+    __typename: "Exercise";
+    id: string;
+    workoutID: string;
+    workout: {
+      __typename: "Workout";
       id: string;
-      workoutID: string;
-      isMuscleExercise: boolean;
-      exerciseDate: string;
       name: string;
-      notes: string | null;
-      distance: number | null;
-      distanceUnit: string | null;
-      seconds: number | null;
-      weight: number | null;
-      setOrder: number | null;
-      weightUnit: string | null;
-      reps: number | null;
+      workoutDate: string;
+      workoutNotes: string | null;
       createdAt: string;
       updatedAt: string;
-    } | null> | null;
-    nextToken: string | null;
-  } | null;
+    } | null;
+    isMuscleExercise: boolean;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -613,10 +755,24 @@ export type OnCreateExerciseSubscription = {
     name: string;
     workoutDate: string;
     workoutNotes: string | null;
-    exercises: {
-      __typename: "ModelExerciseConnection";
-      nextToken: string | null;
-    } | null;
+    exercises: Array<{
+      __typename: "Exercise";
+      id: string;
+      workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -645,10 +801,24 @@ export type OnUpdateExerciseSubscription = {
     name: string;
     workoutDate: string;
     workoutNotes: string | null;
-    exercises: {
-      __typename: "ModelExerciseConnection";
-      nextToken: string | null;
-    } | null;
+    exercises: Array<{
+      __typename: "Exercise";
+      id: string;
+      workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -677,10 +847,24 @@ export type OnDeleteExerciseSubscription = {
     name: string;
     workoutDate: string;
     workoutNotes: string | null;
-    exercises: {
-      __typename: "ModelExerciseConnection";
-      nextToken: string | null;
-    } | null;
+    exercises: Array<{
+      __typename: "Exercise";
+      id: string;
+      workoutID: string;
+      isMuscleExercise: boolean;
+      exerciseDate: string;
+      name: string;
+      notes: string | null;
+      distance: number | null;
+      distanceUnit: string | null;
+      seconds: number | null;
+      weight: number | null;
+      setOrder: number | null;
+      weightUnit: string | null;
+      reps: number | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
     createdAt: string;
     updatedAt: string;
   } | null;
@@ -716,25 +900,30 @@ export class APIService {
           workoutNotes
           exercises {
             __typename
-            items {
+            id
+            workoutID
+            workout {
               __typename
               id
-              workoutID
-              isMuscleExercise
-              exerciseDate
               name
-              notes
-              distance
-              distanceUnit
-              seconds
-              weight
-              setOrder
-              weightUnit
-              reps
+              workoutDate
+              workoutNotes
               createdAt
               updatedAt
             }
-            nextToken
+            isMuscleExercise
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
           }
           createdAt
           updatedAt
@@ -764,25 +953,30 @@ export class APIService {
           workoutNotes
           exercises {
             __typename
-            items {
+            id
+            workoutID
+            workout {
               __typename
               id
-              workoutID
-              isMuscleExercise
-              exerciseDate
               name
-              notes
-              distance
-              distanceUnit
-              seconds
-              weight
-              setOrder
-              weightUnit
-              reps
+              workoutDate
+              workoutNotes
               createdAt
               updatedAt
             }
-            nextToken
+            isMuscleExercise
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
           }
           createdAt
           updatedAt
@@ -812,25 +1006,30 @@ export class APIService {
           workoutNotes
           exercises {
             __typename
-            items {
+            id
+            workoutID
+            workout {
               __typename
               id
-              workoutID
-              isMuscleExercise
-              exerciseDate
               name
-              notes
-              distance
-              distanceUnit
-              seconds
-              weight
-              setOrder
-              weightUnit
-              reps
+              workoutDate
+              workoutNotes
               createdAt
               updatedAt
             }
-            nextToken
+            isMuscleExercise
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
           }
           createdAt
           updatedAt
@@ -864,7 +1063,21 @@ export class APIService {
             workoutNotes
             exercises {
               __typename
-              nextToken
+              id
+              workoutID
+              isMuscleExercise
+              exerciseDate
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
+              createdAt
+              updatedAt
             }
             createdAt
             updatedAt
@@ -912,7 +1125,21 @@ export class APIService {
             workoutNotes
             exercises {
               __typename
-              nextToken
+              id
+              workoutID
+              isMuscleExercise
+              exerciseDate
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
+              createdAt
+              updatedAt
             }
             createdAt
             updatedAt
@@ -960,7 +1187,21 @@ export class APIService {
             workoutNotes
             exercises {
               __typename
-              nextToken
+              id
+              workoutID
+              isMuscleExercise
+              exerciseDate
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
+              createdAt
+              updatedAt
             }
             createdAt
             updatedAt
@@ -1001,25 +1242,30 @@ export class APIService {
           workoutNotes
           exercises {
             __typename
-            items {
+            id
+            workoutID
+            workout {
               __typename
               id
-              workoutID
-              isMuscleExercise
-              exerciseDate
               name
-              notes
-              distance
-              distanceUnit
-              seconds
-              weight
-              setOrder
-              weightUnit
-              reps
+              workoutDate
+              workoutNotes
               createdAt
               updatedAt
             }
-            nextToken
+            isMuscleExercise
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
           }
           createdAt
           updatedAt
@@ -1049,7 +1295,21 @@ export class APIService {
             workoutNotes
             exercises {
               __typename
-              nextToken
+              id
+              workoutID
+              isMuscleExercise
+              exerciseDate
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
+              createdAt
+              updatedAt
             }
             createdAt
             updatedAt
@@ -1086,7 +1346,21 @@ export class APIService {
             workoutNotes
             exercises {
               __typename
-              nextToken
+              id
+              workoutID
+              isMuscleExercise
+              exerciseDate
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
+              createdAt
+              updatedAt
             }
             createdAt
             updatedAt
@@ -1167,6 +1441,67 @@ export class APIService {
     )) as any;
     return <ListExercisesQuery>response.data.listExercises;
   }
+  async ExercisesByName(
+    name?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelExerciseFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ExercisesByNameQuery> {
+    const statement = `query ExercisesByName($name: String, $sortDirection: ModelSortDirection, $filter: ModelExerciseFilterInput, $limit: Int, $nextToken: String) {
+        exercisesByName(name: $name, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            workoutID
+            workout {
+              __typename
+              id
+              name
+              workoutDate
+              workoutNotes
+              createdAt
+              updatedAt
+            }
+            isMuscleExercise
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (name) {
+      gqlAPIServiceArguments.name = name;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ExercisesByNameQuery>response.data.exercisesByName;
+  }
   OnCreateWorkoutListener: Observable<
     OnCreateWorkoutSubscription
   > = API.graphql(
@@ -1180,25 +1515,30 @@ export class APIService {
           workoutNotes
           exercises {
             __typename
-            items {
+            id
+            workoutID
+            workout {
               __typename
               id
-              workoutID
-              isMuscleExercise
-              exerciseDate
               name
-              notes
-              distance
-              distanceUnit
-              seconds
-              weight
-              setOrder
-              weightUnit
-              reps
+              workoutDate
+              workoutNotes
               createdAt
               updatedAt
             }
-            nextToken
+            isMuscleExercise
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
           }
           createdAt
           updatedAt
@@ -1220,25 +1560,30 @@ export class APIService {
           workoutNotes
           exercises {
             __typename
-            items {
+            id
+            workoutID
+            workout {
               __typename
               id
-              workoutID
-              isMuscleExercise
-              exerciseDate
               name
-              notes
-              distance
-              distanceUnit
-              seconds
-              weight
-              setOrder
-              weightUnit
-              reps
+              workoutDate
+              workoutNotes
               createdAt
               updatedAt
             }
-            nextToken
+            isMuscleExercise
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
           }
           createdAt
           updatedAt
@@ -1260,25 +1605,30 @@ export class APIService {
           workoutNotes
           exercises {
             __typename
-            items {
+            id
+            workoutID
+            workout {
               __typename
               id
-              workoutID
-              isMuscleExercise
-              exerciseDate
               name
-              notes
-              distance
-              distanceUnit
-              seconds
-              weight
-              setOrder
-              weightUnit
-              reps
+              workoutDate
+              workoutNotes
               createdAt
               updatedAt
             }
-            nextToken
+            isMuscleExercise
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
           }
           createdAt
           updatedAt
@@ -1304,7 +1654,21 @@ export class APIService {
             workoutNotes
             exercises {
               __typename
-              nextToken
+              id
+              workoutID
+              isMuscleExercise
+              exerciseDate
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
+              createdAt
+              updatedAt
             }
             createdAt
             updatedAt
@@ -1344,7 +1708,21 @@ export class APIService {
             workoutNotes
             exercises {
               __typename
-              nextToken
+              id
+              workoutID
+              isMuscleExercise
+              exerciseDate
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
+              createdAt
+              updatedAt
             }
             createdAt
             updatedAt
@@ -1384,7 +1762,21 @@ export class APIService {
             workoutNotes
             exercises {
               __typename
-              nextToken
+              id
+              workoutID
+              isMuscleExercise
+              exerciseDate
+              name
+              notes
+              distance
+              distanceUnit
+              seconds
+              weight
+              setOrder
+              weightUnit
+              reps
+              createdAt
+              updatedAt
             }
             createdAt
             updatedAt

@@ -6,24 +6,29 @@ query GetWorkout($id: ID!) {
     workoutDate
     workoutNotes
     exercises {
-      items {
+      id
+      workoutID
+      workout {
         id
-        workoutID
-        isMuscleExercise
-        exerciseDate
         name
-        notes
-        distance
-        distanceUnit
-        seconds
-        weight
-        setOrder
-        weightUnit
-        reps
+        workoutDate
+        workoutNotes
         createdAt
         updatedAt
       }
-      nextToken
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt
@@ -41,7 +46,21 @@ query ListWorkouts(
       workoutDate
       workoutNotes
       exercises {
-        nextToken
+        id
+        workoutID
+        isMuscleExercise
+        exerciseDate
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -59,7 +78,21 @@ query GetExercise($id: ID!) {
       workoutDate
       workoutNotes
       exercises {
-        nextToken
+        id
+        workoutID
+        isMuscleExercise
+        exerciseDate
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -85,6 +118,48 @@ query ListExercises(
   $nextToken: String
 ) {
   listExercises(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      workoutID
+      workout {
+        id
+        name
+        workoutDate
+        workoutNotes
+        createdAt
+        updatedAt
+      }
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query ExercisesByName(
+  $name: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelExerciseFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  exercisesByName(
+    name: $name
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
     items {
       id
       workoutID

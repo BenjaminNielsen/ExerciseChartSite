@@ -6,24 +6,29 @@ subscription OnCreateWorkout {
     workoutDate
     workoutNotes
     exercises {
-      items {
+      id
+      workoutID
+      workout {
         id
-        workoutID
-        isMuscleExercise
-        exerciseDate
         name
-        notes
-        distance
-        distanceUnit
-        seconds
-        weight
-        setOrder
-        weightUnit
-        reps
+        workoutDate
+        workoutNotes
         createdAt
         updatedAt
       }
-      nextToken
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt
@@ -36,24 +41,29 @@ subscription OnUpdateWorkout {
     workoutDate
     workoutNotes
     exercises {
-      items {
+      id
+      workoutID
+      workout {
         id
-        workoutID
-        isMuscleExercise
-        exerciseDate
         name
-        notes
-        distance
-        distanceUnit
-        seconds
-        weight
-        setOrder
-        weightUnit
-        reps
+        workoutDate
+        workoutNotes
         createdAt
         updatedAt
       }
-      nextToken
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt
@@ -66,24 +76,29 @@ subscription OnDeleteWorkout {
     workoutDate
     workoutNotes
     exercises {
-      items {
+      id
+      workoutID
+      workout {
         id
-        workoutID
-        isMuscleExercise
-        exerciseDate
         name
-        notes
-        distance
-        distanceUnit
-        seconds
-        weight
-        setOrder
-        weightUnit
-        reps
+        workoutDate
+        workoutNotes
         createdAt
         updatedAt
       }
-      nextToken
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt
@@ -99,7 +114,21 @@ subscription OnCreateExercise {
       workoutDate
       workoutNotes
       exercises {
-        nextToken
+        id
+        workoutID
+        isMuscleExercise
+        exerciseDate
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -129,7 +158,21 @@ subscription OnUpdateExercise {
       workoutDate
       workoutNotes
       exercises {
-        nextToken
+        id
+        workoutID
+        isMuscleExercise
+        exerciseDate
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -159,7 +202,21 @@ subscription OnDeleteExercise {
       workoutDate
       workoutNotes
       exercises {
-        nextToken
+        id
+        workoutID
+        isMuscleExercise
+        exerciseDate
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt

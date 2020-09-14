@@ -9,24 +9,29 @@ mutation CreateWorkout(
     workoutDate
     workoutNotes
     exercises {
-      items {
+      id
+      workoutID
+      workout {
         id
-        workoutID
-        isMuscleExercise
-        exerciseDate
         name
-        notes
-        distance
-        distanceUnit
-        seconds
-        weight
-        setOrder
-        weightUnit
-        reps
+        workoutDate
+        workoutNotes
         createdAt
         updatedAt
       }
-      nextToken
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt
@@ -42,24 +47,29 @@ mutation UpdateWorkout(
     workoutDate
     workoutNotes
     exercises {
-      items {
+      id
+      workoutID
+      workout {
         id
-        workoutID
-        isMuscleExercise
-        exerciseDate
         name
-        notes
-        distance
-        distanceUnit
-        seconds
-        weight
-        setOrder
-        weightUnit
-        reps
+        workoutDate
+        workoutNotes
         createdAt
         updatedAt
       }
-      nextToken
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt
@@ -75,24 +85,29 @@ mutation DeleteWorkout(
     workoutDate
     workoutNotes
     exercises {
-      items {
+      id
+      workoutID
+      workout {
         id
-        workoutID
-        isMuscleExercise
-        exerciseDate
         name
-        notes
-        distance
-        distanceUnit
-        seconds
-        weight
-        setOrder
-        weightUnit
-        reps
+        workoutDate
+        workoutNotes
         createdAt
         updatedAt
       }
-      nextToken
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt
@@ -111,7 +126,21 @@ mutation CreateExercise(
       workoutDate
       workoutNotes
       exercises {
-        nextToken
+        id
+        workoutID
+        isMuscleExercise
+        exerciseDate
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -144,7 +173,21 @@ mutation UpdateExercise(
       workoutDate
       workoutNotes
       exercises {
-        nextToken
+        id
+        workoutID
+        isMuscleExercise
+        exerciseDate
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt
@@ -177,7 +220,21 @@ mutation DeleteExercise(
       workoutDate
       workoutNotes
       exercises {
-        nextToken
+        id
+        workoutID
+        isMuscleExercise
+        exerciseDate
+        name
+        notes
+        distance
+        distanceUnit
+        seconds
+        weight
+        setOrder
+        weightUnit
+        reps
+        createdAt
+        updatedAt
       }
       createdAt
       updatedAt

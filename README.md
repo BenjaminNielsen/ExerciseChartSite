@@ -1,11 +1,12 @@
 # To Do before V1
 
-* Integrate date checking in lambda function to illeminate duplicate exercise problem
-* Fix query (keys?) so that I am not scanning the whole db then filtering
-* Create monthly data validation system
+* Integrate date checking in lambda function to eliminate duplicate exercise problem
 * Center spinners and make cards have a fixed height to prevent movement when chart is loaded
 * Create option to load in 5/3/1 data
 
+# Optional
+
+* Create monthly data validation system
 
 # ExerciseChartSite
 

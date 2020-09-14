@@ -33,11 +33,7 @@ export class MuscleExerciseChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.workoutApi.ListExercises({
-      name: {
-        eq: this.exerciseName
-      }
-    }).then((event: ListExercisesQuery) => {
+    this.workoutApi.ExercisesByName(this.exerciseName).then((event: ListExercisesQuery) => {
       const exercisesList = event.items
       this.weightUnit = exercisesList[0].weightUnit
 

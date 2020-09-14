@@ -4,7 +4,7 @@ import {MuscleExercise} from '../../../domain/exercise/MuscleExercise/muscle-exe
 import {Color, Label} from 'ng2-charts'
 import {MuscleChartPoint} from '../../../domain/chart/MuscleChartPoint'
 import {ExerciseCalculationServiceService} from '../../../services/exercise/exercise-calculation-service.service'
-import {APIService, ListExercisesQuery} from '../../../services/API.service'
+import {APIService, ListExercisesQuery} from '../../../API.service'
 
 @Component({
   selector: 'app-muscle-exercise-chart',

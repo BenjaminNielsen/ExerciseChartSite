@@ -6,7 +6,7 @@ frontend:
         - npm ci
     build:
       commands:
-        - npm run buildProd
+        - npm run build
   artifacts:
     baseDirectory: dist/exercise-chart-site
     files:

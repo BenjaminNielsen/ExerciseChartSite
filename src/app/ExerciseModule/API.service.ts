@@ -3,6 +3,7 @@
 //  This file was automatically generated and should not be edited.
 import { Injectable } from "@angular/core";
 import API, { graphqlOperation } from "@aws-amplify/api";
+import { GraphQLResult } from "@aws-amplify/api/lib/types";
 import { Observable } from "zen-observable-ts";
 
 export type CreateWorkoutInput = {
@@ -603,6 +604,38 @@ export type ListExercisesQuery = {
 };
 
 export type ExercisesByNameQuery = {
+  __typename: "ModelExerciseConnection";
+  items: Array<{
+    __typename: "Exercise";
+    id: string;
+    workoutID: string;
+    workout: {
+      __typename: "Workout";
+      id: string;
+      name: string;
+      workoutDate: string;
+      workoutNotes: string | null;
+      createdAt: string;
+      updatedAt: string;
+    } | null;
+    isMuscleExercise: boolean;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type ExercisesByDateQuery = {
   __typename: "ModelExerciseConnection";
   items: Array<{
     __typename: "Exercise";
@@ -1501,6 +1534,67 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ExercisesByNameQuery>response.data.exercisesByName;
+  }
+  async ExercisesByDate(
+    exerciseDate?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelExerciseFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ExercisesByDateQuery> {
+    const statement = `query ExercisesByDate($exerciseDate: AWSDateTime, $sortDirection: ModelSortDirection, $filter: ModelExerciseFilterInput, $limit: Int, $nextToken: String) {
+        exercisesByDate(exerciseDate: $exerciseDate, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            workoutID
+            workout {
+              __typename
+              id
+              name
+              workoutDate
+              workoutNotes
+              createdAt
+              updatedAt
+            }
+            isMuscleExercise
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (exerciseDate) {
+      gqlAPIServiceArguments.exerciseDate = exerciseDate;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ExercisesByDateQuery>response.data.exercisesByDate;
   }
   OnCreateWorkoutListener: Observable<
     OnCreateWorkoutSubscription

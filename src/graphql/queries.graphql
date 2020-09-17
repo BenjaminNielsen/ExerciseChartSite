@@ -188,3 +188,45 @@ query ExercisesByName(
     nextToken
   }
 }
+query ExercisesByDate(
+  $exerciseDate: AWSDateTime
+  $sortDirection: ModelSortDirection
+  $filter: ModelExerciseFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  exercisesByDate(
+    exerciseDate: $exerciseDate
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      workoutID
+      workout {
+        id
+        name
+        workoutDate
+        workoutNotes
+        createdAt
+        updatedAt
+      }
+      isMuscleExercise
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

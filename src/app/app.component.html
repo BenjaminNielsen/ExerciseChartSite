@@ -1,1 +1,13 @@
-<app-chart></app-chart>
+<clr-main-container>
+  <clr-header >
+    <div class="branding">
+      Ben's Site
+    </div>
+    <div class="header-nav" [clr-nav-level]="1">
+      <a routerLink="/exercises" class="nav-link nav-text" routerLinkActive="active">Exercises</a>
+      <a routerLink="/body" class="nav-link nav-text" routerLinkActive="active">Body</a>
+    </div>
+  </clr-header>
+
+  <router-outlet></router-outlet>
+</clr-main-container>

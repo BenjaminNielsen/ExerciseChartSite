@@ -1,19 +1,20 @@
-import {Component, Input, OnInit} from '@angular/core'
+import {Component, Input, OnChanges} from '@angular/core'
 import {Chart, ChartDataSets, ChartOptions} from 'chart.js'
-import {MuscleExercise} from '../../../domain/exercise/MuscleExercise/muscle-exercise'
+import {MuscleExercise} from '../../domain/exercise/MuscleExercise/muscle-exercise'
 import {Color, Label} from 'ng2-charts'
-import {MuscleChartPoint} from '../../../domain/chart/MuscleChartPoint'
-import {ExerciseCalculationServiceService} from '../../../services/exercise/exercise-calculation-service.service'
-import {APIService, ListExercisesQuery} from '../../../API.service'
+import {MuscleChartPoint} from '../../domain/chart/MuscleChartPoint'
+import {ExerciseCalculationServiceService} from '../../services/exercise/exercise-calculation-service.service'
+import {APIService, ListExercisesQuery} from '../../API.service'
 
 @Component({
   selector: 'app-muscle-exercise-chart',
   templateUrl: './muscle-exercise-chart.component.html',
   styleUrls: ['./muscle-exercise-chart.component.css']
 })
-export class MuscleExerciseChartComponent implements OnInit {
+export class MuscleExerciseChartComponent implements OnChanges {
 
   @Input() exerciseName: string
+
   exercisesMap: Map<string, MuscleExercise[]>
 
   public loading = true
@@ -32,7 +33,8 @@ export class MuscleExerciseChartComponent implements OnInit {
               public workoutApi: APIService) {
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    this.loading = true
     this.workoutApi.ExercisesByName(this.exerciseName).then((event: ListExercisesQuery) => {
       const exercisesList = event.items
       this.weightUnit = exercisesList[0].weightUnit
@@ -50,7 +52,6 @@ export class MuscleExerciseChartComponent implements OnInit {
       this.generateChart()
       this.loading = false
     })
-
   }
 
   generateChart(): void {

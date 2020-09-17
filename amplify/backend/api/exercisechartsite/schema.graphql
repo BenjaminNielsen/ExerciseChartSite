@@ -6,7 +6,8 @@ type Workout @model {
   exercises: [Exercise]
 }
 
-type Exercise @model @key(name: "byName", fields: ["name"], queryField: "exercisesByName"){
+type Exercise @model @key(name: "byName", fields: ["name"], queryField: "exercisesByName")
+                     @key(name: "byDate", fields: ["exerciseDate"], queryField: "exercisesByDate"){
   id: ID!
   workoutID: ID!
   workout: Workout @connection(fields: ["workoutID"])

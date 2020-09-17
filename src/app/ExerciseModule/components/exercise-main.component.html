@@ -1,0 +1,19 @@
+<div class="content-container">
+  <main class="content-area">
+
+    <router-outlet></router-outlet>
+
+  </main>
+  <nav class="sidenav" [clr-nav-level]="2">
+
+    <section class="nav-group">
+      <input id="defaultExercises" type="checkbox">
+      <label for="defaultExercises">Main Exercises</label>
+      <ul class="nav-list">
+        <li *ngFor="let defaultName of defaultExercises">  <a [routerLink]="['/exercises', defaultName.id]" class="nav-link nav-text" routerLinkActive="active" >{{defaultName.name}}</a></li>
+      </ul>
+    </section>
+
+  </nav>
+</div>
+

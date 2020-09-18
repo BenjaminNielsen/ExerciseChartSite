@@ -17,7 +17,7 @@ const routes: Routes = [
     ]
   },
   {path: 'body', component: BodyMainComponent},
-  {path: '', redirectTo: '/exercises', pathMatch: 'full'}, // redirect to `exercises`
+  {path: '', redirectTo: '/exercises/0', pathMatch: 'full'}, // redirect to `exercises/0`
   {path: '**', component: PageNotFoundComponent},
 ]
 

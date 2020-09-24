@@ -1,4 +1,4 @@
-export const DefaultExercises = [
+export const DefaultExercises: ExerciseIdentifier[] = [
   {name: 'Bench Press (Barbell)', id: 0},
   {name: 'Strict Military Press (Barbell)', id: 1},
   {name: 'Squat (Barbell)', id: 2},

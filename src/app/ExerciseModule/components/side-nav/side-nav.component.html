@@ -12,8 +12,8 @@
   <section class="nav-group">
     <input id="selectableExercises" type="checkbox">
     <label for="selectableExercises">Other Exercises</label>
-    <ul *ngIf="exerciseNames" class="nav-list">
-      <li *ngFor="let uniqueName of exerciseNames">  <a [routerLink]="['/exercises', uniqueName.id]" class="nav-link nav-text" routerLinkActive="active" >{{uniqueName.name}}</a></li>
+    <ul *ngIf="otherExerciseNames" class="nav-list">
+      <li *ngFor="let uniqueName of otherExerciseNames">  <a [routerLink]="['/exercises', uniqueName.id]" class="nav-link nav-text" routerLinkActive="active" >{{uniqueName.name}}</a></li>
     </ul>
   </section>
 </div>

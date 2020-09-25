@@ -20,7 +20,7 @@ export class ExerciseContentComponent implements OnInit {
       const exerciseNames = identifiers
 
       this.route.paramMap.subscribe(params => {
-        this.selectedExerciseName = exerciseNames[+params.get('exerciseId')].name
+        this.selectedExerciseName = exerciseNames[+params.get('exerciseId')]?.name
       })
     })
 

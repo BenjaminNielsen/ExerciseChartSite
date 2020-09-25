@@ -1,7 +1,7 @@
-export const DefaultExercises: ExerciseIdentifier[] = [
-  {name: 'Bench Press (Barbell)', id: 0},
-  {name: 'Strict Military Press (Barbell)', id: 1},
-  {name: 'Squat (Barbell)', id: 2},
-  {name: 'Deadlift (Barbell)', id: 3},
+export const DefaultExerciseNames: string[] = [
+  'Bench Press (Barbell)',
+  'Strict Military Press (Barbell)',
+  'Squat (Barbell)',
+  'Deadlift (Barbell)'
 ]
 

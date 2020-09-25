@@ -1,6 +1,6 @@
 <div>
   <div>
-    <clr-toggle-container (change)="onChange()" clrInline>
+    <clr-toggle-container (change)="onToggleChange()" clrInline>
       <clr-toggle-wrapper>
         <input [(ngModel)]="options.topWeight" clrToggle id="topWeightOption-{{exerciseName}}" type="checkbox" value="topWeight"/>
         <label for="topWeightOption-{{exerciseName}}"> Weight</label>

@@ -73,7 +73,7 @@ export class MuscleExerciseChartComponent implements OnChanges {
     this.setupChart(dataSets)
   }
 
-  onChange(): void {
+  onToggleChange(): void {
     this.generateChart()
   }
 

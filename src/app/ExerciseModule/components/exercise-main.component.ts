@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core'
-import {DefaultExercises} from '../domain/constants/defaultExercises'
+import {Component} from '@angular/core'
 
 @Component({
   selector: 'app-exercise-main',
@@ -7,9 +6,5 @@ import {DefaultExercises} from '../domain/constants/defaultExercises'
   styleUrls: ['./exercise-main.component.css']
 })
 export class ExerciseMainComponent {
-
-  public defaultExercises = DefaultExercises
-
   constructor() { }
-
 }

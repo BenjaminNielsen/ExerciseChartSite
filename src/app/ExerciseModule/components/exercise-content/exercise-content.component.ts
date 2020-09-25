@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core'
 import {ActivatedRoute} from '@angular/router'
-import {DefaultExercises} from '../../domain/constants/defaultExercises'
+import {ExerciseNamesService} from '../../services/exercise-names/exercise-names.service'
 
 @Component({
   selector: 'app-exercise-content',
@@ -11,13 +11,19 @@ export class ExerciseContentComponent implements OnInit {
 
   public selectedExerciseName: string
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private nameService: ExerciseNamesService) {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.selectedExerciseName = DefaultExercises[+params.get('exerciseId')].name
+
+    this.nameService.getExerciseIdentifiers().subscribe((identifiers) => {
+      const exerciseNames = identifiers
+
+      this.route.paramMap.subscribe(params => {
+        this.selectedExerciseName = exerciseNames[+params.get('exerciseId')].name
+      })
     })
+
   }
 
 }

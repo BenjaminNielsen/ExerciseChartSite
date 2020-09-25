@@ -10,7 +10,8 @@ import {AppComponent} from '../app.component'
 import {ExerciseMainComponent} from './components/exercise-main.component'
 import {MuscleExerciseChartComponent} from './components/muscle-exercise-chart/muscle-exercise-chart.component'
 import {AppRoutingModule} from '../app-routing.module'
-import { ExerciseContentComponent } from './components/exercise-content/exercise-content.component'
+import { ExerciseContentComponent } from './components/exercise-content/exercise-content.component';
+import { SideNavComponent } from './components/side-nav/side-nav.component'
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ExerciseContentComponent } from './components/exercise-content/exercise
     ExerciseMainComponent,
     MuscleExerciseChartComponent,
     ExerciseContentComponent,
+    SideNavComponent,
   ],
   imports: [
     CommonModule,

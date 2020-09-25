@@ -11,17 +11,19 @@ export class SideNavComponent implements OnInit {
 
   public defaultExercises = DefaultExercises
 
-  public otherExerciseNames: Array<ExerciseIdentifier>
+  public otherExerciseNames: Array<string>
 
   constructor(public nameService: ExerciseNamesService) {
   }
 
   ngOnInit(): void {
-     this.otherExerciseNames = this.nameService.getExerciseNames()
-     console.log(this.otherExerciseNames)
-     this.otherExerciseNames = this.otherExerciseNames.filter((exercise) => {
-       return !this.defaultExercises.find((defaultEx) => defaultEx.id === exercise.id)
+     this.nameService.exerciseNames().subscribe((names) => {
+       this.otherExerciseNames = names.filter(name => DefaultExercises.some(defaultEx => defaultEx.name === name))
      })
+     console.log(this.otherExerciseNames)
+     // this.otherExerciseNames = this.otherExerciseNames.filter((exercise) => {
+     //   return !this.defaultExercises.find((defaultEx) => defaultEx.id === exercise.id)
+     // })
 
   }
 

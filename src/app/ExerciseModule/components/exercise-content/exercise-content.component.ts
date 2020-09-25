@@ -16,9 +16,13 @@ export class ExerciseContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const exerciseNames = this.nameService.getExerciseNames()
+    //const exerciseNames = this.nameService.getExerciseNames()
+
+    this.nameService.exerciseNames().subscribe((data) => {
+      console.log(data)
+    })
     this.route.paramMap.subscribe(params => {
-      this.selectedExerciseName = exerciseNames[+params.get('exerciseId')].name
+      //this.selectedExerciseName = exerciseNames[+params.get('exerciseId')].name
     })
   }
 

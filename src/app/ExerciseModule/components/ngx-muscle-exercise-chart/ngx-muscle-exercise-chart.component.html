@@ -18,23 +18,27 @@
       </clr-toggle-wrapper>
     </clr-toggle-container>
   </div>
-  <div *ngIf="loading">
-    <clr-spinner>Loading data</clr-spinner>
+  <div class="chartContent">
+    <div *ngIf="loading" class="chartSpinner">
+      <clr-spinner>Loading data</clr-spinner>
+    </div>
+    <div *ngIf="!loading" class="chartContent">
+      <ngx-charts-line-chart
+        [scheme]="colorScheme"
+        [legend]="legend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxis]="xAxis"
+        [yAxis]="yAxis"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [timeline]="timeline"
+        [results]="chartData"
+      >
+      </ngx-charts-line-chart>
+    </div>
   </div>
-  <div *ngIf="!loading"  style="height: 500px">
-    <ngx-charts-line-chart
-      [scheme]="colorScheme"
-      [legend]="legend"
-      [showXAxisLabel]="showXAxisLabel"
-      [showYAxisLabel]="showYAxisLabel"
-      [xAxis]="xAxis"
-      [yAxis]="yAxis"
-      [xAxisLabel]="xAxisLabel"
-      [yAxisLabel]="yAxisLabel"
-      [timeline]="timeline"
-      [results]="chartData"
-    >
-    </ngx-charts-line-chart>
-  </div>
+
+
 </div>
 

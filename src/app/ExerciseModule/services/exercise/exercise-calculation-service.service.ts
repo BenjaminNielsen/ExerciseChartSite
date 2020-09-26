@@ -15,4 +15,13 @@ export class ExerciseCalculationServiceService {
   public getHighest1RM(exercises: MuscleExercise[]): number {
     return Math.max(...exercises.map((exercise) => ExerciseCalculationServiceService.get1RM(exercise)))
   }
+
+  public getHighestWeight(exercises: MuscleExercise[]): number {
+    return Math.max(...(exercises.map((exercise) => (exercise as MuscleExercise).weight)))
+  }
+
+  public getHighestVolume(exercises: MuscleExercise[]): number {
+    return Math.max(...(exercises.map((exercise) => (exercise as MuscleExercise).weight * (exercise as MuscleExercise).reps)))
+  }
+
 }

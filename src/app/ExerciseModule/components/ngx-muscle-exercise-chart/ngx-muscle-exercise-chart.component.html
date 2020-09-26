@@ -1,0 +1,40 @@
+<div>
+  <div>
+    <clr-toggle-container (change)="onToggleChange()" clrInline>
+      <clr-toggle-wrapper>
+        <input [(ngModel)]="options.topWeight" clrToggle id="topWeightOption-{{exerciseName}}" type="checkbox"
+               value="topWeight"/>
+        <label for="topWeightOption-{{exerciseName}}"> Weight</label>
+      </clr-toggle-wrapper>
+      <clr-toggle-wrapper>
+        <input [(ngModel)]="options.OneRepMax" clrToggle id="OneRepMaxOption-{{exerciseName}}" type="checkbox"
+               value="OneRepMax"/>
+        <label for="OneRepMaxOption-{{exerciseName}}"> 1RM </label>
+      </clr-toggle-wrapper>
+      <clr-toggle-wrapper>
+        <input [(ngModel)]="options.totalVolume" clrToggle id="totalVolumeOption-{{exerciseName}}" type="checkbox"
+               value="totalVolume"/>
+        <label for="totalVolumeOption-{{exerciseName}}"> Volume </label>
+      </clr-toggle-wrapper>
+    </clr-toggle-container>
+  </div>
+  <div *ngIf="loading">
+    <clr-spinner>Loading data</clr-spinner>
+  </div>
+  <div *ngIf="!loading"  style="height: 500px">
+    <ngx-charts-line-chart
+      [scheme]="colorScheme"
+      [legend]="legend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxis]="xAxis"
+      [yAxis]="yAxis"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [timeline]="timeline"
+      [results]="chartData"
+    >
+    </ngx-charts-line-chart>
+  </div>
+</div>
+

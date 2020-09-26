@@ -3,12 +3,12 @@
     Please select a valid exercise from the list of exercises
   </div>
   <div *ngIf="selectedExerciseName">
-    <div class="card clr-col-sm-12 clr-col-lg-10" >
+    <div class="card" >
       <div class="card-header">
         {{selectedExerciseName}}
       </div>
-      <div>
-        <app-muscle-exercise-chart [exerciseName]="selectedExerciseName" ></app-muscle-exercise-chart>
+      <div >
+        <app-ngx-muscle-exercise-chart [exerciseName]="selectedExerciseName" ></app-ngx-muscle-exercise-chart>
       </div>
     </div>
   </div>

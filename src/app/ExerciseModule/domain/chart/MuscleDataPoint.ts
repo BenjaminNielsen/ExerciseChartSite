@@ -1,8 +1,8 @@
 export class MuscleDataPoint {
-  name: string
+  name: Date
   value: number
 
-  constructor(date: string, weight: number) {
+  constructor(date: Date, weight: number) {
     this.name = date
     this.value = weight
   }

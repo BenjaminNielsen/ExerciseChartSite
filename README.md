@@ -1,7 +1,6 @@
 # To Do before V1
 
-* Integrate date checking in lambda function to eliminate duplicate exercise problem
-* Center spinners and make cards have a fixed height to prevent movement when chart is loaded
+* Recreate database load in groovy
 * Create option to load in 5/3/1 data
 
 # Optional

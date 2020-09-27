@@ -15,23 +15,21 @@ export class NgxMuscleExerciseChartComponent implements OnChanges, AfterViewInit
 
   @Input() exerciseName: string
 
-  view: any[] = [200, 400]
-
   // options
   legend = false
   showLabels = true
   animations = true
   xAxis = true
   yAxis = true
-  showYAxisLabel = true
+  showYAxisLabel = window.innerWidth > 500
   showXAxisLabel = true
   xAxisLabel = 'Date'
   yAxisLabel = 'Weight'
-  timeline = true
+  timeline = false
   public options = {topWeight: true, OneRepMax: true, totalVolume: false}
 
   private weightUnit: string
-  private exercisesArray: any
+  private exercisesArray: { date: DateTime, exerciseSets: MuscleExercise[] }[]
   public chartData: Array<MuscleSeries>
   public loading = true
 
@@ -76,7 +74,7 @@ export class NgxMuscleExerciseChartComponent implements OnChanges, AfterViewInit
 
   getSeriesData(seriesPredicate: (exercises: MuscleExercise[]) => number, name: string): MuscleSeries {
     const exerciseData: Array<MuscleDataPoint> = this.exercisesArray.map(workout => {
-      return new MuscleDataPoint(workout.date.toLocaleString(), seriesPredicate(workout.exerciseSets))
+      return new MuscleDataPoint(workout.date.toJSDate(), seriesPredicate(workout.exerciseSets))
     })
 
     return {name, series: exerciseData}

@@ -23,3 +23,26 @@ type Exercise @model @key(name: "byName", fields: ["name"], queryField: "exercis
   weightUnit: String
   reps: Int
 }
+
+type MuscleExercise @model @key(name: "byName", fields: ["name"], queryField: "muscleExercisesByName")
+@key(name: "byDate", fields: ["exerciseDate"], queryField: "muscleExercisesByDate"){
+  id: ID!
+  exerciseDate: AWSDateTime!
+  name: String!
+  notes: String
+  weight: Float
+  setOrder: Int
+  weightUnit: String
+  reps: Int
+}
+
+type CardioExercise @model @key(name: "byName", fields: ["name"], queryField: "cardioExercisesByName")
+@key(name: "byDate", fields: ["exerciseDate"], queryField: "cardioExercisesByDate"){
+  id: ID!
+  exerciseDate: AWSDateTime!
+  name: String!
+  notes: String
+  distance: Float
+  distanceUnit: String
+  seconds: Int
+}

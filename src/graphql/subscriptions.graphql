@@ -236,3 +236,84 @@ subscription OnDeleteExercise {
     updatedAt
   }
 }
+subscription OnCreateMuscleExercise {
+  onCreateMuscleExercise {
+    id
+    exerciseDate
+    name
+    notes
+    weight
+    setOrder
+    weightUnit
+    reps
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateMuscleExercise {
+  onUpdateMuscleExercise {
+    id
+    exerciseDate
+    name
+    notes
+    weight
+    setOrder
+    weightUnit
+    reps
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteMuscleExercise {
+  onDeleteMuscleExercise {
+    id
+    exerciseDate
+    name
+    notes
+    weight
+    setOrder
+    weightUnit
+    reps
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCardioExercise {
+  onCreateCardioExercise {
+    id
+    exerciseDate
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCardioExercise {
+  onUpdateCardioExercise {
+    id
+    exerciseDate
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCardioExercise {
+  onDeleteCardioExercise {
+    id
+    exerciseDate
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    createdAt
+    updatedAt
+  }
+}

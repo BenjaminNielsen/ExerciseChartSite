@@ -1,10 +1,9 @@
 import {Component, Input, OnChanges, AfterViewInit, SimpleChanges} from '@angular/core'
-import {APIService, ListExercisesQuery} from '../../API.service'
-import {MuscleExercise} from '../../domain/exercise/MuscleExercise/muscle-exercise'
 import {ExerciseCalculationServiceService} from '../../services/exercise/exercise-calculation-service.service'
 import {MuscleSeries} from '../../domain/chart/MuscleSeries'
 import {MuscleDataPoint} from '../../domain/chart/MuscleDataPoint'
 import {DateTime} from 'luxon'
+import {APIService, GetMuscleExerciseQuery, ListMuscleExercisesQuery} from '../../../API.service'
 
 @Component({
   selector: 'app-ngx-muscle-exercise-chart',
@@ -29,7 +28,7 @@ export class NgxMuscleExerciseChartComponent implements OnChanges, AfterViewInit
   public options = {topWeight: true, OneRepMax: true, totalVolume: false}
 
   private weightUnit: string
-  private exercisesArray: { date: DateTime, exerciseSets: MuscleExercise[] }[]
+  private exercisesArray: { date: DateTime, exerciseSets: GetMuscleExerciseQuery[] }[]
   public chartData: Array<MuscleSeries>
   public loading = true
 
@@ -52,7 +51,7 @@ export class NgxMuscleExerciseChartComponent implements OnChanges, AfterViewInit
 
   makeDatabaseCallAndGenerateChart(): void {
     this.loading = true
-    this.workoutApi.ExercisesByName(this.exerciseName).then((event: ListExercisesQuery) => {
+    this.workoutApi.MuscleExercisesByName(this.exerciseName).then((event: ListMuscleExercisesQuery) => {
       const exercisesList = event.items
       this.weightUnit = exercisesList[0].weightUnit
 
@@ -72,7 +71,7 @@ export class NgxMuscleExerciseChartComponent implements OnChanges, AfterViewInit
     })
   }
 
-  getSeriesData(seriesPredicate: (exercises: MuscleExercise[]) => number, name: string): MuscleSeries {
+  getSeriesData(seriesPredicate: (exercises: GetMuscleExerciseQuery[]) => number, name: string): MuscleSeries {
     const exerciseData: Array<MuscleDataPoint> = this.exercisesArray.map(workout => {
       return new MuscleDataPoint(workout.date.toJSDate(), seriesPredicate(workout.exerciseSets))
     })
@@ -84,13 +83,13 @@ export class NgxMuscleExerciseChartComponent implements OnChanges, AfterViewInit
     const newChartData: Array<MuscleSeries> = []
 
     if (this.options.topWeight) {
-      newChartData.push(this.getSeriesData((e) => this.calculator.getHighestWeight(e), 'Highest Weight'))
+      newChartData.push(this.getSeriesData((e: GetMuscleExerciseQuery[]) => this.calculator.getHighestWeight(e), 'Highest Weight'))
     }
     if (this.options.OneRepMax) {
-      newChartData.push(this.getSeriesData((e) => this.calculator.getHighest1RM(e), 'One Rep Max'))
+      newChartData.push(this.getSeriesData((e: GetMuscleExerciseQuery[]) => this.calculator.getHighest1RM(e), 'One Rep Max'))
     }
     if (this.options.totalVolume) {
-      newChartData.push(this.getSeriesData((e) => this.calculator.getHighestVolume(e), 'Highest Volume/Set'))
+      newChartData.push(this.getSeriesData((e: GetMuscleExerciseQuery[]) => this.calculator.getHighestVolume(e), 'Highest Volume/Set'))
     }
     this.chartData = newChartData
   }

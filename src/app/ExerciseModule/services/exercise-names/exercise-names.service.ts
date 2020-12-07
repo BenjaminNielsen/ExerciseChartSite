@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
-import {APIService} from '../../API.service'
 import {from, Observable} from 'rxjs'
 import {map} from 'rxjs/operators'
 import {ExerciseIdentifier} from '../../domain/ExerciseIdentifier/ExerciseIdentifier'
+import {APIService} from '../../../API.service'
 
 
 @Injectable({
@@ -13,7 +13,7 @@ export class ExerciseNamesService {
   constructor(public api: APIService) { }
 
   public exerciseNames(): Observable<string[]> {
-    return from(this.api.ListExercises(null, 1000)).pipe(
+    return from(this.api.ListMuscleExercises(null, 1000)).pipe(
       map(listQueryResult => Array.from(new Set(listQueryResult.items.map((item) => item.name))))
     )
   }

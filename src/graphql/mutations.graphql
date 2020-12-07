@@ -254,3 +254,102 @@ mutation DeleteExercise(
     updatedAt
   }
 }
+mutation CreateMuscleExercise(
+  $input: CreateMuscleExerciseInput!
+  $condition: ModelMuscleExerciseConditionInput
+) {
+  createMuscleExercise(input: $input, condition: $condition) {
+    id
+    exerciseDate
+    name
+    notes
+    weight
+    setOrder
+    weightUnit
+    reps
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateMuscleExercise(
+  $input: UpdateMuscleExerciseInput!
+  $condition: ModelMuscleExerciseConditionInput
+) {
+  updateMuscleExercise(input: $input, condition: $condition) {
+    id
+    exerciseDate
+    name
+    notes
+    weight
+    setOrder
+    weightUnit
+    reps
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteMuscleExercise(
+  $input: DeleteMuscleExerciseInput!
+  $condition: ModelMuscleExerciseConditionInput
+) {
+  deleteMuscleExercise(input: $input, condition: $condition) {
+    id
+    exerciseDate
+    name
+    notes
+    weight
+    setOrder
+    weightUnit
+    reps
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateCardioExercise(
+  $input: CreateCardioExerciseInput!
+  $condition: ModelCardioExerciseConditionInput
+) {
+  createCardioExercise(input: $input, condition: $condition) {
+    id
+    exerciseDate
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCardioExercise(
+  $input: UpdateCardioExerciseInput!
+  $condition: ModelCardioExerciseConditionInput
+) {
+  updateCardioExercise(input: $input, condition: $condition) {
+    id
+    exerciseDate
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCardioExercise(
+  $input: DeleteCardioExerciseInput!
+  $condition: ModelCardioExerciseConditionInput
+) {
+  deleteCardioExercise(input: $input, condition: $condition) {
+    id
+    exerciseDate
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    createdAt
+    updatedAt
+  }
+}

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import {MuscleExercise} from '../../domain/exercise/MuscleExercise/muscle-exercise'
+import {GetMuscleExerciseQuery} from '../../../API.service'
 
 @Injectable({
   providedIn: 'root'
@@ -8,20 +8,20 @@ export class ExerciseCalculationServiceService {
 
   constructor() { }
 
-  static get1RM(exercise: MuscleExercise): number {
+  static get1RM(exercise: GetMuscleExerciseQuery): number {
     return exercise.weight * (1 + (exercise.reps / 30))
   }
 
-  public getHighest1RM(exercises: MuscleExercise[]): number {
+  public getHighest1RM(exercises: GetMuscleExerciseQuery[]): number {
     return Math.max(...exercises.map((exercise) => ExerciseCalculationServiceService.get1RM(exercise)))
   }
 
-  public getHighestWeight(exercises: MuscleExercise[]): number {
-    return Math.max(...(exercises.map((exercise) => (exercise as MuscleExercise).weight)))
+  public getHighestWeight(exercises: GetMuscleExerciseQuery[]): number {
+    return Math.max(...(exercises.map((exercise) => exercise.weight)))
   }
 
-  public getHighestVolume(exercises: MuscleExercise[]): number {
-    return Math.max(...(exercises.map((exercise) => (exercise as MuscleExercise).weight * (exercise as MuscleExercise).reps)))
+  public getHighestVolume(exercises: GetMuscleExerciseQuery[]): number {
+    return Math.max(...(exercises.map((exercise: GetMuscleExerciseQuery) => exercise.weight * exercise.reps)))
   }
 
 }

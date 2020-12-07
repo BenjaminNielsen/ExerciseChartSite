@@ -146,6 +146,74 @@ query ListExercises(
     nextToken
   }
 }
+query GetMuscleExercise($id: ID!) {
+  getMuscleExercise(id: $id) {
+    id
+    exerciseDate
+    name
+    notes
+    weight
+    setOrder
+    weightUnit
+    reps
+    createdAt
+    updatedAt
+  }
+}
+query ListMuscleExercises(
+  $filter: ModelMuscleExerciseFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listMuscleExercises(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      exerciseDate
+      name
+      notes
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetCardioExercise($id: ID!) {
+  getCardioExercise(id: $id) {
+    id
+    exerciseDate
+    name
+    notes
+    distance
+    distanceUnit
+    seconds
+    createdAt
+    updatedAt
+  }
+}
+query ListCardioExercises(
+  $filter: ModelCardioExerciseFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCardioExercises(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query ExercisesByName(
   $name: String
   $sortDirection: ModelSortDirection
@@ -224,6 +292,120 @@ query ExercisesByDate(
       setOrder
       weightUnit
       reps
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query MuscleExercisesByName(
+  $name: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelMuscleExerciseFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  muscleExercisesByName(
+    name: $name
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      exerciseDate
+      name
+      notes
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query MuscleExercisesByDate(
+  $exerciseDate: AWSDateTime
+  $sortDirection: ModelSortDirection
+  $filter: ModelMuscleExerciseFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  muscleExercisesByDate(
+    exerciseDate: $exerciseDate
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      exerciseDate
+      name
+      notes
+      weight
+      setOrder
+      weightUnit
+      reps
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query CardioExercisesByName(
+  $name: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelCardioExerciseFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  cardioExercisesByName(
+    name: $name
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query CardioExercisesByDate(
+  $exerciseDate: AWSDateTime
+  $sortDirection: ModelSortDirection
+  $filter: ModelCardioExerciseFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  cardioExercisesByDate(
+    exerciseDate: $exerciseDate
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      exerciseDate
+      name
+      notes
+      distance
+      distanceUnit
+      seconds
       createdAt
       updatedAt
     }

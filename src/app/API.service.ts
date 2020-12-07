@@ -173,6 +173,81 @@ export type DeleteExerciseInput = {
   id?: string | null;
 };
 
+export type CreateMuscleExerciseInput = {
+  id?: string | null;
+  exerciseDate: string;
+  name: string;
+  notes?: string | null;
+  weight?: number | null;
+  setOrder?: number | null;
+  weightUnit?: string | null;
+  reps?: number | null;
+};
+
+export type ModelMuscleExerciseConditionInput = {
+  exerciseDate?: ModelStringInput | null;
+  name?: ModelStringInput | null;
+  notes?: ModelStringInput | null;
+  weight?: ModelFloatInput | null;
+  setOrder?: ModelIntInput | null;
+  weightUnit?: ModelStringInput | null;
+  reps?: ModelIntInput | null;
+  and?: Array<ModelMuscleExerciseConditionInput | null> | null;
+  or?: Array<ModelMuscleExerciseConditionInput | null> | null;
+  not?: ModelMuscleExerciseConditionInput | null;
+};
+
+export type UpdateMuscleExerciseInput = {
+  id: string;
+  exerciseDate?: string | null;
+  name?: string | null;
+  notes?: string | null;
+  weight?: number | null;
+  setOrder?: number | null;
+  weightUnit?: string | null;
+  reps?: number | null;
+};
+
+export type DeleteMuscleExerciseInput = {
+  id?: string | null;
+};
+
+export type CreateCardioExerciseInput = {
+  id?: string | null;
+  exerciseDate: string;
+  name: string;
+  notes?: string | null;
+  distance?: number | null;
+  distanceUnit?: string | null;
+  seconds?: number | null;
+};
+
+export type ModelCardioExerciseConditionInput = {
+  exerciseDate?: ModelStringInput | null;
+  name?: ModelStringInput | null;
+  notes?: ModelStringInput | null;
+  distance?: ModelFloatInput | null;
+  distanceUnit?: ModelStringInput | null;
+  seconds?: ModelIntInput | null;
+  and?: Array<ModelCardioExerciseConditionInput | null> | null;
+  or?: Array<ModelCardioExerciseConditionInput | null> | null;
+  not?: ModelCardioExerciseConditionInput | null;
+};
+
+export type UpdateCardioExerciseInput = {
+  id: string;
+  exerciseDate?: string | null;
+  name?: string | null;
+  notes?: string | null;
+  distance?: number | null;
+  distanceUnit?: string | null;
+  seconds?: number | null;
+};
+
+export type DeleteCardioExerciseInput = {
+  id?: string | null;
+};
+
 export type ModelWorkoutFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
@@ -200,6 +275,33 @@ export type ModelExerciseFilterInput = {
   and?: Array<ModelExerciseFilterInput | null> | null;
   or?: Array<ModelExerciseFilterInput | null> | null;
   not?: ModelExerciseFilterInput | null;
+};
+
+export type ModelMuscleExerciseFilterInput = {
+  id?: ModelIDInput | null;
+  exerciseDate?: ModelStringInput | null;
+  name?: ModelStringInput | null;
+  notes?: ModelStringInput | null;
+  weight?: ModelFloatInput | null;
+  setOrder?: ModelIntInput | null;
+  weightUnit?: ModelStringInput | null;
+  reps?: ModelIntInput | null;
+  and?: Array<ModelMuscleExerciseFilterInput | null> | null;
+  or?: Array<ModelMuscleExerciseFilterInput | null> | null;
+  not?: ModelMuscleExerciseFilterInput | null;
+};
+
+export type ModelCardioExerciseFilterInput = {
+  id?: ModelIDInput | null;
+  exerciseDate?: ModelStringInput | null;
+  name?: ModelStringInput | null;
+  notes?: ModelStringInput | null;
+  distance?: ModelFloatInput | null;
+  distanceUnit?: ModelStringInput | null;
+  seconds?: ModelIntInput | null;
+  and?: Array<ModelCardioExerciseFilterInput | null> | null;
+  or?: Array<ModelCardioExerciseFilterInput | null> | null;
+  not?: ModelCardioExerciseFilterInput | null;
 };
 
 export enum ModelSortDirection {
@@ -456,6 +558,87 @@ export type DeleteExerciseMutation = {
   updatedAt: string;
 };
 
+export type CreateMuscleExerciseMutation = {
+  __typename: "MuscleExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateMuscleExerciseMutation = {
+  __typename: "MuscleExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteMuscleExerciseMutation = {
+  __typename: "MuscleExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateCardioExerciseMutation = {
+  __typename: "CardioExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateCardioExerciseMutation = {
+  __typename: "CardioExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteCardioExerciseMutation = {
+  __typename: "CardioExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type GetWorkoutQuery = {
   __typename: "Workout";
   id: string;
@@ -603,6 +786,68 @@ export type ListExercisesQuery = {
   nextToken: string | null;
 };
 
+export type GetMuscleExerciseQuery = {
+  __typename: "MuscleExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListMuscleExercisesQuery = {
+  __typename: "ModelMuscleExerciseConnection";
+  items: Array<{
+    __typename: "MuscleExercise";
+    id: string;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetCardioExerciseQuery = {
+  __typename: "CardioExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListCardioExercisesQuery = {
+  __typename: "ModelCardioExerciseConnection";
+  items: Array<{
+    __typename: "CardioExercise";
+    id: string;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
 export type ExercisesByNameQuery = {
   __typename: "ModelExerciseConnection";
   items: Array<{
@@ -661,6 +906,76 @@ export type ExercisesByDateQuery = {
     setOrder: number | null;
     weightUnit: string | null;
     reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type MuscleExercisesByNameQuery = {
+  __typename: "ModelMuscleExerciseConnection";
+  items: Array<{
+    __typename: "MuscleExercise";
+    id: string;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type MuscleExercisesByDateQuery = {
+  __typename: "ModelMuscleExerciseConnection";
+  items: Array<{
+    __typename: "MuscleExercise";
+    id: string;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    weight: number | null;
+    setOrder: number | null;
+    weightUnit: string | null;
+    reps: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type CardioExercisesByNameQuery = {
+  __typename: "ModelCardioExerciseConnection";
+  items: Array<{
+    __typename: "CardioExercise";
+    id: string;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type CardioExercisesByDateQuery = {
+  __typename: "ModelCardioExerciseConnection";
+  items: Array<{
+    __typename: "CardioExercise";
+    id: string;
+    exerciseDate: string;
+    name: string;
+    notes: string | null;
+    distance: number | null;
+    distanceUnit: string | null;
+    seconds: number | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -912,6 +1227,87 @@ export type OnDeleteExerciseSubscription = {
   setOrder: number | null;
   weightUnit: string | null;
   reps: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateMuscleExerciseSubscription = {
+  __typename: "MuscleExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateMuscleExerciseSubscription = {
+  __typename: "MuscleExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteMuscleExerciseSubscription = {
+  __typename: "MuscleExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  weight: number | null;
+  setOrder: number | null;
+  weightUnit: string | null;
+  reps: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateCardioExerciseSubscription = {
+  __typename: "CardioExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateCardioExerciseSubscription = {
+  __typename: "CardioExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteCardioExerciseSubscription = {
+  __typename: "CardioExercise";
+  id: string;
+  exerciseDate: string;
+  name: string;
+  notes: string | null;
+  distance: number | null;
+  distanceUnit: string | null;
+  seconds: number | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1265,6 +1661,183 @@ export class APIService {
     )) as any;
     return <DeleteExerciseMutation>response.data.deleteExercise;
   }
+  async CreateMuscleExercise(
+    input: CreateMuscleExerciseInput,
+    condition?: ModelMuscleExerciseConditionInput
+  ): Promise<CreateMuscleExerciseMutation> {
+    const statement = `mutation CreateMuscleExercise($input: CreateMuscleExerciseInput!, $condition: ModelMuscleExerciseConditionInput) {
+        createMuscleExercise(input: $input, condition: $condition) {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          weight
+          setOrder
+          weightUnit
+          reps
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateMuscleExerciseMutation>response.data.createMuscleExercise;
+  }
+  async UpdateMuscleExercise(
+    input: UpdateMuscleExerciseInput,
+    condition?: ModelMuscleExerciseConditionInput
+  ): Promise<UpdateMuscleExerciseMutation> {
+    const statement = `mutation UpdateMuscleExercise($input: UpdateMuscleExerciseInput!, $condition: ModelMuscleExerciseConditionInput) {
+        updateMuscleExercise(input: $input, condition: $condition) {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          weight
+          setOrder
+          weightUnit
+          reps
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateMuscleExerciseMutation>response.data.updateMuscleExercise;
+  }
+  async DeleteMuscleExercise(
+    input: DeleteMuscleExerciseInput,
+    condition?: ModelMuscleExerciseConditionInput
+  ): Promise<DeleteMuscleExerciseMutation> {
+    const statement = `mutation DeleteMuscleExercise($input: DeleteMuscleExerciseInput!, $condition: ModelMuscleExerciseConditionInput) {
+        deleteMuscleExercise(input: $input, condition: $condition) {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          weight
+          setOrder
+          weightUnit
+          reps
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteMuscleExerciseMutation>response.data.deleteMuscleExercise;
+  }
+  async CreateCardioExercise(
+    input: CreateCardioExerciseInput,
+    condition?: ModelCardioExerciseConditionInput
+  ): Promise<CreateCardioExerciseMutation> {
+    const statement = `mutation CreateCardioExercise($input: CreateCardioExerciseInput!, $condition: ModelCardioExerciseConditionInput) {
+        createCardioExercise(input: $input, condition: $condition) {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateCardioExerciseMutation>response.data.createCardioExercise;
+  }
+  async UpdateCardioExercise(
+    input: UpdateCardioExerciseInput,
+    condition?: ModelCardioExerciseConditionInput
+  ): Promise<UpdateCardioExerciseMutation> {
+    const statement = `mutation UpdateCardioExercise($input: UpdateCardioExerciseInput!, $condition: ModelCardioExerciseConditionInput) {
+        updateCardioExercise(input: $input, condition: $condition) {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateCardioExerciseMutation>response.data.updateCardioExercise;
+  }
+  async DeleteCardioExercise(
+    input: DeleteCardioExerciseInput,
+    condition?: ModelCardioExerciseConditionInput
+  ): Promise<DeleteCardioExerciseMutation> {
+    const statement = `mutation DeleteCardioExercise($input: DeleteCardioExerciseInput!, $condition: ModelCardioExerciseConditionInput) {
+        deleteCardioExercise(input: $input, condition: $condition) {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteCardioExerciseMutation>response.data.deleteCardioExercise;
+  }
   async GetWorkout(id: string): Promise<GetWorkoutQuery> {
     const statement = `query GetWorkout($id: ID!) {
         getWorkout(id: $id) {
@@ -1474,6 +2047,130 @@ export class APIService {
     )) as any;
     return <ListExercisesQuery>response.data.listExercises;
   }
+  async GetMuscleExercise(id: string): Promise<GetMuscleExerciseQuery> {
+    const statement = `query GetMuscleExercise($id: ID!) {
+        getMuscleExercise(id: $id) {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          weight
+          setOrder
+          weightUnit
+          reps
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetMuscleExerciseQuery>response.data.getMuscleExercise;
+  }
+  async ListMuscleExercises(
+    filter?: ModelMuscleExerciseFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListMuscleExercisesQuery> {
+    const statement = `query ListMuscleExercises($filter: ModelMuscleExerciseFilterInput, $limit: Int, $nextToken: String) {
+        listMuscleExercises(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            exerciseDate
+            name
+            notes
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListMuscleExercisesQuery>response.data.listMuscleExercises;
+  }
+  async GetCardioExercise(id: string): Promise<GetCardioExerciseQuery> {
+    const statement = `query GetCardioExercise($id: ID!) {
+        getCardioExercise(id: $id) {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetCardioExerciseQuery>response.data.getCardioExercise;
+  }
+  async ListCardioExercises(
+    filter?: ModelCardioExerciseFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListCardioExercisesQuery> {
+    const statement = `query ListCardioExercises($filter: ModelCardioExerciseFilterInput, $limit: Int, $nextToken: String) {
+        listCardioExercises(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListCardioExercisesQuery>response.data.listCardioExercises;
+  }
   async ExercisesByName(
     name?: string,
     sortDirection?: ModelSortDirection,
@@ -1595,6 +2292,192 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ExercisesByDateQuery>response.data.exercisesByDate;
+  }
+  async MuscleExercisesByName(
+    name?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelMuscleExerciseFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<MuscleExercisesByNameQuery> {
+    const statement = `query MuscleExercisesByName($name: String, $sortDirection: ModelSortDirection, $filter: ModelMuscleExerciseFilterInput, $limit: Int, $nextToken: String) {
+        muscleExercisesByName(name: $name, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            exerciseDate
+            name
+            notes
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (name) {
+      gqlAPIServiceArguments.name = name;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <MuscleExercisesByNameQuery>response.data.muscleExercisesByName;
+  }
+  async MuscleExercisesByDate(
+    exerciseDate?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelMuscleExerciseFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<MuscleExercisesByDateQuery> {
+    const statement = `query MuscleExercisesByDate($exerciseDate: AWSDateTime, $sortDirection: ModelSortDirection, $filter: ModelMuscleExerciseFilterInput, $limit: Int, $nextToken: String) {
+        muscleExercisesByDate(exerciseDate: $exerciseDate, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            exerciseDate
+            name
+            notes
+            weight
+            setOrder
+            weightUnit
+            reps
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (exerciseDate) {
+      gqlAPIServiceArguments.exerciseDate = exerciseDate;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <MuscleExercisesByDateQuery>response.data.muscleExercisesByDate;
+  }
+  async CardioExercisesByName(
+    name?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelCardioExerciseFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<CardioExercisesByNameQuery> {
+    const statement = `query CardioExercisesByName($name: String, $sortDirection: ModelSortDirection, $filter: ModelCardioExerciseFilterInput, $limit: Int, $nextToken: String) {
+        cardioExercisesByName(name: $name, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (name) {
+      gqlAPIServiceArguments.name = name;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CardioExercisesByNameQuery>response.data.cardioExercisesByName;
+  }
+  async CardioExercisesByDate(
+    exerciseDate?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelCardioExerciseFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<CardioExercisesByDateQuery> {
+    const statement = `query CardioExercisesByDate($exerciseDate: AWSDateTime, $sortDirection: ModelSortDirection, $filter: ModelCardioExerciseFilterInput, $limit: Int, $nextToken: String) {
+        cardioExercisesByDate(exerciseDate: $exerciseDate, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            exerciseDate
+            name
+            notes
+            distance
+            distanceUnit
+            seconds
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (exerciseDate) {
+      gqlAPIServiceArguments.exerciseDate = exerciseDate;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CardioExercisesByDateQuery>response.data.cardioExercisesByDate;
   }
   OnCreateWorkoutListener: Observable<
     OnCreateWorkoutSubscription
@@ -1892,4 +2775,133 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteExerciseSubscription>;
+
+  OnCreateMuscleExerciseListener: Observable<
+    OnCreateMuscleExerciseSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateMuscleExercise {
+        onCreateMuscleExercise {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          weight
+          setOrder
+          weightUnit
+          reps
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateMuscleExerciseSubscription>;
+
+  OnUpdateMuscleExerciseListener: Observable<
+    OnUpdateMuscleExerciseSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateMuscleExercise {
+        onUpdateMuscleExercise {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          weight
+          setOrder
+          weightUnit
+          reps
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateMuscleExerciseSubscription>;
+
+  OnDeleteMuscleExerciseListener: Observable<
+    OnDeleteMuscleExerciseSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteMuscleExercise {
+        onDeleteMuscleExercise {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          weight
+          setOrder
+          weightUnit
+          reps
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteMuscleExerciseSubscription>;
+
+  OnCreateCardioExerciseListener: Observable<
+    OnCreateCardioExerciseSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateCardioExercise {
+        onCreateCardioExercise {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateCardioExerciseSubscription>;
+
+  OnUpdateCardioExerciseListener: Observable<
+    OnUpdateCardioExerciseSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateCardioExercise {
+        onUpdateCardioExercise {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateCardioExerciseSubscription>;
+
+  OnDeleteCardioExerciseListener: Observable<
+    OnDeleteCardioExerciseSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteCardioExercise {
+        onDeleteCardioExercise {
+          __typename
+          id
+          exerciseDate
+          name
+          notes
+          distance
+          distanceUnit
+          seconds
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteCardioExerciseSubscription>;
 }
